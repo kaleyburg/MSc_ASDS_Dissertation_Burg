@@ -13,7 +13,7 @@ Files then processed in 2_text_analysis-AfterClusterdfCreation
   4_new_mapstuff yields simple_df.csv
 
 5_dataset_creation.R uses simple_df.csv to merge in census and control data as well as the flood data
-  This file yields model_data.csv
+  This file yields model_data.csv AND final_merged_clean_1707.csv (model data comes after overall dataset creation)
 
 6_models.R uses model_data.csv to run the models for the report
 
