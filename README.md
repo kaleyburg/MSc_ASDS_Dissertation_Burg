@@ -12,6 +12,12 @@ Files then processed in 2_text_analysis-AfterClusterdfCreation
 3_floodsagain and 4_new_mapstuff I am pretty sure are then next in the workflow, floodsagain relies on shapefile data, new_mapstuff is used with geocoder and meteostat
   4_new_mapstuff yields simple_df.csv
 
+3_floodsagain uses:
+  Administrative_Areas___Environment_Agency_and_Natural_England.shp"
+  westminster-parliamentary-constituencies.shp"
+  202404 Historic Flood Warnings - EA.xlsx"
+
+
 5_dataset_creation.R uses simple_df.csv to merge in census and control data as well as the flood data
   This file yields model_data.csv AND final_merged_clean_1707.csv (model data comes after overall dataset creation)
 
