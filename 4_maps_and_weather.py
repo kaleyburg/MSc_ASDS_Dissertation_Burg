@@ -5,6 +5,14 @@ Created on Sat Jul  6 16:43:01 2024
 @author: kburg
 """
 
+
+
+#this code file fixes the weather issues before
+#output of this file is data_withweather.csv
+#this is the file that will be used for the maps and the analysis   
+
+
+
 #conda install ipykernel  
 #do this for every env to be able to run in interactive cell
 #%%setup

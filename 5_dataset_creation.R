@@ -1,6 +1,18 @@
-setwd('C:/Users/kburg/OneDrive/Documents/Trinity/diss_all_other')
-rm(list=ls())
-df <- read.csv("simple_df.csv")
+###################
+## This script creates the final dataset for analysis by merging various datasets, including census data, election results, and flood data. ####
+## It also performs some data cleaning and transformation to ensure consistency and usability in subsequent analyses.   #####
+####################
+
+#R.home('bin')
+#install.packages("IRkernel")
+#IRkernel::installspec(user = FALSE)
+#conda install jupyter
+
+
+
+setwd("C:/Users/kburg/OneDrive/Documents/GitHub/MSc_ASDS_Dissertation_Burg/CSVandSHPfiles")
+rm(list = ls())
+df <- read.csv("data_withweather.csv")
 
 head(df)
 
