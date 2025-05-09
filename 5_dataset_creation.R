@@ -13,7 +13,6 @@
 setwd("C:/Users/kburg/OneDrive/Documents/GitHub/MSc_ASDS_Dissertation_Burg/CSVandSHPfiles")
 rm(list = ls())
 df <- read.csv("data_withweather.csv")
-
 head(df)
 
 library(tidyr)
@@ -208,12 +207,10 @@ if(all(is.na(subset_election_res$natSW_votes)) && all(is.na(subset_election_res$
   subset_election_res <- subset_election_res[, !names(subset_election_res) %in% c("natSW_votes", "natSW_share")]
 }
 
-head(subset_election_res)
 
 #change name for constistency and merging
 colnames(subset_election_res)[which(colnames(subset_election_res) == "constituency_name")] <- "constituency"
 subset_election_res$constituency <- tolower(subset_election_res$constituency)
-head(subset_election_res)
 
 #convert constituency names to lowercase in the census data frame
 colnames(census_selected)[which(colnames(census_selected) == "geography")] <- "constituency"
@@ -247,7 +244,7 @@ final_merged <- merged_df %>%
 
 
 #save the CSV file
-file_path <- "final_merged_clean_1707.csv"
+file_path <- "final_merged_clean_240425.csv"
 
 # Save the dataframe final_merged as a CSV file
 write.csv(final_merged, file = file_path, row.names = FALSE)
@@ -255,43 +252,20 @@ write.csv(final_merged, file = file_path, row.names = FALSE)
 # Confirm the file has been saved
 cat("CSV file saved at:", file_path, "\n")
 
-#adding flood data
+colnames(final_merged)
 
-final_floods <- read.csv("final_floods.csv")
-head(final_floods)
-head(final_merged)
-
-final_floods$pcon22nm <- tolower(final_floods$pcon22nm)
-
-
-#merge flood data in
-merged_data <- merge(final_floods, final_merged, by.x = "pcon22nm", by.y = "constituency", all = TRUE)
-
-
-#cleaning flood data 
-
-# names are lowercase for consistency
-final_floods <- final_floods %>%
-  rename(constituency = pcon22nm) %>%
-  mutate(constituency = tolower(constituency))
-
-final_merged <- final_merged %>%
-  mutate(constituency = tolower(constituency))
-
-#filter and aggregate flood data by election year and the previous year
-floods_aggregated <- final_floods %>%
-  left_join(final_merged, by = "constituency", relationship = "many-to-many") %>%
-  filter(DATE == election_year | DATE == (election_year - 1)) %>%
-  group_by(constituency, election_year, TYPE) %>%
-  summarise(total_count = sum(count), .groups = 'drop')
-
-#reshape data to have separate columns for each flood type
-floods_wide <- floods_aggregated %>%
-  pivot_wider(names_from = TYPE, values_from = total_count, values_fill = list(total_count = 0))
-
-#merge with the original election data
-model_data <- final_merged %>%
-  left_join(floods_wide, by = c("constituency", "election_year"))
+#saving data to use in models
+model_data <- final_merged[, c(
+  "constituency", "Median_Age", "Party", "election", "Classification",
+  "Total_Rural_Population", "Total_Urban_Population", "Total_Population",
+  "Higher_Managerial", "Lower_Managerial", "Intermediate_Occupations",
+  "Small_Employers", "Lower_Supervisory", "Semi_Routine", "Routine_Occupations",
+  "Never_Worked", "Long_Term_Unemployed",
+  "Full_Time_Students_Employed", "Full_Time_Students_Unemployed",
+  "Full_Time_Students_Inactive",
+  "overall_weather_std", "lib_share", "lab_share", "oth_share", "con_share",
+  "mean_environmental_mentions")
+  ]
 
 
 #create count variables
@@ -300,36 +274,23 @@ model_data <- model_data %>%
     Total_Students_Count = Full_Time_Students_Employed + Full_Time_Students_Unemployed + Full_Time_Students_Inactive
   )
 
-colnames(model_data)
-
-
-
-#saving data to use in models
-model_data <- model_data[, c("constituency", "Party", "election", "Classification", "Median_Age", 
-                              "Total_Rural_Population", "Total_Urban_Population", 
-                              "Higher_Managerial", "Lower_Managerial", "Intermediate_Occupations",
-                              "Small_Employers",
-                              "Lower_Supervisory", "Semi_Routine", "Routine_Occupations", "Never_Worked_Unemployed",
-                              "Never_Worked", "Long_Term_Unemployed",
-                              "Total_Students_Count", "yearly_avg_tavg", "yearly_avg_tmin", 
-                              "yearly_avg_tmax", "yearly_avg_prcp", "yearly_avg_wspd", 
-                              "yearly_avg_pres", "yearly_avg_tsun", 
-                              "Election", "country.region", "con_share", 
-                              "lib_share", "lab_share", "oth_share", "environment",
-                              "Flood Alert",                       
-                              "Flood Warning",                    
-                              "Update Flood Alert",                
-                              "Update Flood Warning",              
-                              "Severe Flood Warning",              
-                              "Update Severe Flood Warning",       
-                              "Flood Watch")]
-
-
 model_data <- unique(model_data)
+head(model_data)
 
-length(model_data)
+colnames(model_data)  
 
-write.csv(model_data, file = "model_data.csv", row.names = FALSE)
+#counting NAs in all variables ending in _share
+na_count <- sapply(model_data, function(x) sum(is.na(x) & grepl("_share$", names(model_data))))
+na_count <- na_count[na_count > 0] 
+print(na_count)
+
+#listing total number of rows in the dataset
+total_rows <- nrow(model_data)
+print(paste("Total number of rows in the dataset:", total_rows))
+
+#thats fine then with the NAs i think
+
+write.csv(model_data, file = "model_data_revision.csv", row.names = FALSE)
 
 
 

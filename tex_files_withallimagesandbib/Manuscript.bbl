@@ -1,0 +1,548 @@
+\begin{thebibliography}{62}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Misc
+\bibitem[{201()}]{2011CensusOffice}
+, .
+\newblock \bibinfo{title}{2011 {{Census}} - {{Office}} for {{National
+  Statistics}}}.
+\newblock \bibinfo{howpublished}{https://www.ons.gov.uk/census/2011census}.
+%Type = Misc
+\bibitem[{Ker()}]{KerasocrKeras_ocrDocumentation}
+, .
+\newblock \bibinfo{title}{Keras-ocr --- keras\_ocr documentation}.
+\newblock
+  \bibinfo{howpublished}{https://keras-ocr.readthedocs.io/en/latest/index.html}.
+%Type = Misc
+\bibitem[{Met()}]{MeteostatPyPI}
+, .
+\newblock \bibinfo{title}{Meteostat {$\cdot$} {{PyPI}}}.
+\newblock \bibinfo{howpublished}{https://pypi.org/project/meteostat/}.
+%Type = Misc
+\bibitem[{Rur()}]{RuralUrbanClassification}
+, .
+\newblock \bibinfo{title}{Rural {{Urban Classification}} (2011) of
+  {{Westminster Parliamentary Constituencies}} in {{EN}}}.
+\newblock
+  \bibinfo{howpublished}{https://geoportal.statistics.gov.uk/datasets/7c142d94d43d4d1c9dd2d109f3cbf44a/about}.
+%Type = Article
+\bibitem[{Adams et~al.(2004)Adams, Clark, Ezrow and
+  Glasgow}]{adamsUnderstandingChangeStability2004}
+\bibinfo{author}{Adams, J.}, \bibinfo{author}{Clark, M.},
+  \bibinfo{author}{Ezrow, L.}, \bibinfo{author}{Glasgow, G.},
+  \bibinfo{year}{2004}.
+\newblock \bibinfo{title}{Understanding {{Change}} and {{Stability}} in {{Party
+  Ideologies}}: {{Do Parties Respond}} to {{Public Opinion}} or to {{Past
+  Election Results}}?}
+\newblock \bibinfo{journal}{British Journal of Political Science}
+  \bibinfo{volume}{34}, \bibinfo{pages}{589--610}.
+\newblock \DOIprefix\doi{10.1017/S0007123404000201}.
+%Type = Article
+\bibitem[{Agasoster(2001)}]{agasosterPartyCohesionLocal2001}
+\bibinfo{author}{Agasoster, {\relax Bodil}.}, \bibinfo{year}{2001}.
+\newblock \bibinfo{title}{Party cohesion and local agendas: A study in
+  variations in local campaign strategies in {{Scotland}}}.
+\newblock \bibinfo{journal}{University of Aberdeen} .
+%Type = Article
+\bibitem[{Albright and Crow(2019)}]{albrightBeliefsClimateChange2019}
+\bibinfo{author}{Albright, E.A.}, \bibinfo{author}{Crow, D.},
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{Beliefs about climate change in the aftermath of
+  extreme flooding}.
+\newblock \bibinfo{journal}{Climatic Change} \bibinfo{volume}{155},
+  \bibinfo{pages}{1--17}.
+\newblock \DOIprefix\doi{10.1007/s10584-019-02461-2}.
+%Type = Article
+\bibitem[{Arcury and
+  Christianson(1990)}]{arcuryEnvironmentalWorldviewResponse1990}
+\bibinfo{author}{Arcury, T.A.}, \bibinfo{author}{Christianson, E.H.},
+  \bibinfo{year}{1990}.
+\newblock \bibinfo{title}{Environmental {{Worldview}} in {{Response}} to
+  {{Environmental Problems}}: {{Kentucky}} 1984 and 1988 {{Compared}}}.
+\newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{22},
+  \bibinfo{pages}{387--407}.
+\newblock \DOIprefix\doi{10.1177/0013916590223004}.
+%Type = Techreport
+\bibitem[{Bines(2024)}]{binesRoutineManualWorkers2024}
+\bibinfo{author}{Bines, N.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Routine and {{Manual Workers Profile}}}.
+\newblock \bibinfo{type}{Technical Report}.
+%Type = Article
+\bibitem[{Bogner and Wiseman(1997)}]{bognerEnvironmentalPerceptionRural1997}
+\bibinfo{author}{Bogner, F.X.}, \bibinfo{author}{Wiseman, M.},
+  \bibinfo{year}{1997}.
+\newblock \bibinfo{title}{Environmental {{Perception Of Rural And Urban
+  Pupils}}}.
+\newblock \bibinfo{journal}{Journal of Environmental Psychology}
+  \bibinfo{volume}{17}, \bibinfo{pages}{111--122}.
+\newblock \DOIprefix\doi{10.1006/jevp.1997.0046}.
+%Type = Article
+\bibitem[{Bright et~al.(2020)Bright, Hale, Ganesh, Bulovsky, Margetts and
+  Howard}]{brightDoesCampaigningSocial2020}
+\bibinfo{author}{Bright, J.}, \bibinfo{author}{Hale, S.},
+  \bibinfo{author}{Ganesh, B.}, \bibinfo{author}{Bulovsky, A.},
+  \bibinfo{author}{Margetts, H.}, \bibinfo{author}{Howard, P.},
+  \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Does {{Campaigning}} on {{Social Media Make}} a
+  {{Difference}}? {{Evidence From Candidate Use}} of {{Twitter During}} the
+  2015 and 2017 {{U}}.{{K}}. {{Elections}}}.
+\newblock \bibinfo{journal}{Communication Research} \bibinfo{volume}{47},
+  \bibinfo{pages}{988--1009}.
+\newblock \DOIprefix\doi{10.1177/0093650219872394}.
+%Type = Article
+\bibitem[{Burns(2020)}]{burnsWillBrexitDegrade2020}
+\bibinfo{author}{Burns, C.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Will {{Brexit Degrade UK Environmental Policy}}?}
+\newblock \bibinfo{journal}{Current History} \bibinfo{volume}{119},
+  \bibinfo{pages}{101--106}.
+\newblock \href{http://arxiv.org/abs/48614518}{{\tt arXiv:48614518}}.
+%Type = Article
+\bibitem[{Buttel(1979)}]{buttelAgeEnvironmentalConcern1979}
+\bibinfo{author}{Buttel, F.H.}, \bibinfo{year}{1979}.
+\newblock \bibinfo{title}{Age and {{Environmental Concern}}: {{A Multivariate
+  Analysis}}}.
+\newblock \bibinfo{journal}{Youth \& Society} \bibinfo{volume}{10},
+  \bibinfo{pages}{237--256}.
+\newblock \DOIprefix\doi{10.1177/0044118X7901000302}.
+%Type = Article
+\bibitem[{Carter(2006)}]{carterPartyPoliticizationEnvironment2006}
+\bibinfo{author}{Carter, N.}, \bibinfo{year}{2006}.
+\newblock \bibinfo{title}{Party {{Politicization Of The Environment In
+  Britain}}}.
+\newblock \bibinfo{journal}{Party Politics} \bibinfo{volume}{12},
+  \bibinfo{pages}{747--767}.
+\newblock \DOIprefix\doi{10.1177/1354068806068599}.
+%Type = Article
+\bibitem[{Carter(2013)}]{carterGreeningMainstreamParty2013}
+\bibinfo{author}{Carter, N.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Greening the mainstream: Party politics and the
+  environment}.
+\newblock \bibinfo{journal}{Environmental Politics} \bibinfo{volume}{22},
+  \bibinfo{pages}{73--94}.
+\newblock \DOIprefix\doi{10.1080/09644016.2013.755391}.
+%Type = Article
+\bibitem[{Choudrie et~al.(2005)Choudrie, Weerakkody and
+  Jones}]{choudrieRealisingGovernmentUK2005}
+\bibinfo{author}{Choudrie, J.}, \bibinfo{author}{Weerakkody, V.},
+  \bibinfo{author}{Jones, S.}, \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Realising e-government in the {{UK}}: Rural and urban
+  challenges}.
+\newblock \bibinfo{journal}{Journal of Enterprise Information Management}
+  \bibinfo{volume}{18}, \bibinfo{pages}{568--585}.
+\newblock \DOIprefix\doi{10.1108/17410390510624016}.
+%Type = Article
+\bibitem[{Cracknell(2024)}]{cracknell2010GeneralElection2024}
+\bibinfo{author}{Cracknell, R.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{2010 {{General Election}}: New constituencies; seats
+  and swing} .
+%Type = Article
+\bibitem[{Cutts et~al.(2020)Cutts, Goodwin, Heath and
+  Surridge}]{cuttsBrexit2019General2020}
+\bibinfo{author}{Cutts, D.}, \bibinfo{author}{Goodwin, M.},
+  \bibinfo{author}{Heath, O.}, \bibinfo{author}{Surridge, P.},
+  \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Brexit, the 2019 {{General Election}} and the
+  {{Realignment}} of {{British Politics}}}.
+\newblock \bibinfo{journal}{The Political Quarterly} \bibinfo{volume}{91},
+  \bibinfo{pages}{7--23}.
+\newblock \DOIprefix\doi{10.1111/1467-923X.12815}.
+%Type = Article
+\bibitem[{De~Berenguer et~al.(2005)De~Berenguer, Corraliza and
+  Mart{\'i}n}]{deberenguerRuralUrbanDifferencesEnvironmental2005}
+\bibinfo{author}{De~Berenguer, J.}, \bibinfo{author}{Corraliza, J.},
+  \bibinfo{author}{Mart{\'i}n, R.}, \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Rural-{{Urban Differences}} in {{Environmental
+  Concern}}, {{Attitudes}}, and {{Actions}}}.
+\newblock \bibinfo{journal}{European Journal of Psychological Assessment}
+  \bibinfo{volume}{21}, \bibinfo{pages}{128--138}.
+\newblock \DOIprefix\doi{10.1027/1015-5759.21.2.128}.
+%Type = Article
+\bibitem[{Dietz et~al.(1998)Dietz, Stern and
+  Guagnano}]{dietzSocialStructuralSocial1998}
+\bibinfo{author}{Dietz, T.}, \bibinfo{author}{Stern, P.C.},
+  \bibinfo{author}{Guagnano, G.A.}, \bibinfo{year}{1998}.
+\newblock \bibinfo{title}{Social {{Structural}} and {{Social Psychological
+  Bases}} of {{Environmental Concern}}}.
+\newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{30},
+  \bibinfo{pages}{450--471}.
+\newblock \DOIprefix\doi{10.1177/001391659803000402}.
+%Type = Article
+\bibitem[{Dunlap(1975)}]{dunlapImpactPoliticalOrientation1975}
+\bibinfo{author}{Dunlap, R.E.}, \bibinfo{year}{1975}.
+\newblock \bibinfo{title}{The {{Impact}} of {{Political Orientation On
+  Environmental Attitudes}} and {{Actions}}}.
+\newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{7},
+  \bibinfo{pages}{428--454}.
+\newblock \DOIprefix\doi{10.1177/001391657500700402}.
+%Type = Article
+\bibitem[{Dunlap et~al.(2016)Dunlap, McCright and
+  Yarosh}]{dunlapPoliticalDivideClimate2016}
+\bibinfo{author}{Dunlap, R.E.}, \bibinfo{author}{McCright, A.M.},
+  \bibinfo{author}{Yarosh, J.H.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{The {{Political Divide}} on {{Climate Change}}:
+  {{Partisan Polarization Widens}} in the {{U}}.{{S}}.}
+\newblock \bibinfo{journal}{Environment: Science and Policy for Sustainable
+  Development} \bibinfo{volume}{58}, \bibinfo{pages}{4--23}.
+\newblock \DOIprefix\doi{10.1080/00139157.2016.1208995}.
+%Type = Article
+\bibitem[{Farstad(2018)}]{farstadWhatExplainsVariation2018}
+\bibinfo{author}{Farstad, F.M.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{What explains variation in parties' climate change
+  salience?}
+\newblock \bibinfo{journal}{Party Politics} \bibinfo{volume}{24},
+  \bibinfo{pages}{698--707}.
+\newblock \DOIprefix\doi{10.1177/1354068817693473}.
+%Type = Article
+\bibitem[{Fisher and Denver(2008)}]{fisherFootsloggingCallCentres2008}
+\bibinfo{author}{Fisher, J.}, \bibinfo{author}{Denver, D.},
+  \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{From foot-slogging to call centres and direct mail:
+  {{A}} framework for analysing the development of district-level campaigning}.
+\newblock \bibinfo{journal}{European Journal of Political Research}
+  \bibinfo{volume}{47}, \bibinfo{pages}{794--826}.
+\newblock \DOIprefix\doi{10.1111/j.1475-6765.2008.00785.x}.
+%Type = Article
+\bibitem[{Freudenburg(1991)}]{freudenburgRuralUrbanDifferencesEnvironmental1991}
+\bibinfo{author}{Freudenburg, W.R.}, \bibinfo{year}{1991}.
+\newblock \bibinfo{title}{Rural-{{Urban Differences}} in {{Environmental
+  Concern}}: {{A Closer Look}}}.
+\newblock \bibinfo{journal}{Sociological Inquiry} \bibinfo{volume}{61},
+  \bibinfo{pages}{167--198}.
+\newblock \DOIprefix\doi{10.1111/j.1475-682X.1991.tb00274.x}.
+%Type = Article
+\bibitem[{Gamba and Oskamp(1994)}]{gambaFactorsInfluencingCommunity1994}
+\bibinfo{author}{Gamba, R.J.}, \bibinfo{author}{Oskamp, S.},
+  \bibinfo{year}{1994}.
+\newblock \bibinfo{title}{Factors {{Influencing Community Residents}}'
+  {{Participation}} in {{Commingled Curbside Recycling Programs}}}.
+\newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{26},
+  \bibinfo{pages}{587--612}.
+\newblock \DOIprefix\doi{10.1177/0013916594265001}.
+%Type = Article
+\bibitem[{Gifford and Nilsson(2014)}]{giffordPersonalSocialFactors2014}
+\bibinfo{author}{Gifford, R.}, \bibinfo{author}{Nilsson, A.},
+  \bibinfo{year}{2014}.
+\newblock \bibinfo{title}{Personal and social factors that influence
+  pro-environmental concern and behaviour: {{A}} review}.
+\newblock \bibinfo{journal}{International Journal of Psychology}
+  \bibinfo{volume}{49}, \bibinfo{pages}{141--157}.
+\newblock \DOIprefix\doi{10.1002/ijop.12034}.
+%Type = Article
+\bibitem[{Goebbert et~al.(2012)Goebbert, {Jenkins-Smith}, Klockow, Nowlin and
+  Silva}]{goebbertWeatherClimateWorldviews2012}
+\bibinfo{author}{Goebbert, K.}, \bibinfo{author}{{Jenkins-Smith}, H.C.},
+  \bibinfo{author}{Klockow, K.}, \bibinfo{author}{Nowlin, M.C.},
+  \bibinfo{author}{Silva, C.L.}, \bibinfo{year}{2012}.
+\newblock \bibinfo{title}{Weather, {{Climate}}, and {{Worldviews}}: {{The
+  Sources}} and {{Consequences}} of {{Public Perceptions}} of {{Changes}} in
+  {{Local Weather Patterns}}*}.
+\newblock \bibinfo{journal}{Weather, Climate, and Society} \bibinfo{volume}{4},
+  \bibinfo{pages}{132--144}.
+\newblock \DOIprefix\doi{10.1175/WCAS-D-11-00044.1}.
+%Type = Article
+\bibitem[{Harrison and McSweeney(2008)}]{harrisonNationalLocalParty2008}
+\bibinfo{author}{Harrison, L.}, \bibinfo{author}{McSweeney, D.},
+  \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{National {{And Local Party Election Agendas}}}.
+\newblock \bibinfo{journal}{Representation} \bibinfo{volume}{44},
+  \bibinfo{pages}{1--13}.
+\newblock \DOIprefix\doi{10.1080/00344890701869041}.
+%Type = Article
+\bibitem[{Hartman et~al.(2017)Hartman, Pattie and
+  Johnston}]{hartmanLearningJobAdapting2017}
+\bibinfo{author}{Hartman, T.K.}, \bibinfo{author}{Pattie, C.},
+  \bibinfo{author}{Johnston, R.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Learning on the job? {{Adapting}} party campaign
+  strategy to changing information on the local political context}.
+\newblock \bibinfo{journal}{Electoral Studies} \bibinfo{volume}{49},
+  \bibinfo{pages}{128--135}.
+\newblock \DOIprefix\doi{10.1016/j.electstud.2017.06.005}.
+%Type = Article
+\bibitem[{Heath and Goodwin(2017)}]{heath2017GeneralElection2017}
+\bibinfo{author}{Heath, O.}, \bibinfo{author}{Goodwin, M.},
+  \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{The 2017 {{General Election}}, {{Brexit}} and the
+  {{Return}} to {{Two-Party Politics}}: {{An Aggregate-Level Analysis}} of the
+  {{Result}}}.
+\newblock \bibinfo{journal}{The Political Quarterly} \bibinfo{volume}{88},
+  \bibinfo{pages}{345--358}.
+\newblock \DOIprefix\doi{10.1111/1467-923X.12405}.
+%Type = Article
+\bibitem[{Hobolt(2018)}]{hoboltBrexit2017UK2018}
+\bibinfo{author}{Hobolt, S.B.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{Brexit and the 2017 {{UK General Election}}}.
+\newblock \bibinfo{journal}{Journal of Common Market Studies}
+  \bibinfo{volume}{56}, \bibinfo{pages}{39--50}.
+%Type = Misc
+\bibitem[{Hoffstaetter()}]{hoffstaetterPytesseractPythontesseractPython}
+\bibinfo{author}{Hoffstaetter, S.}, .
+\newblock \bibinfo{title}{Pytesseract: {{Python-tesseract}} is a python wrapper
+  for {{Google}}'s {{Tesseract-OCR}}}.
+%Type = Article
+\bibitem[{Howell and Laska(1992)}]{howellChangingFaceEnvironmental1992}
+\bibinfo{author}{Howell, S.E.}, \bibinfo{author}{Laska, S.B.},
+  \bibinfo{year}{1992}.
+\newblock \bibinfo{title}{The {{Changing Face}} of the {{Environmental
+  Coalition}}: {{A Research Note}}}.
+\newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{24},
+  \bibinfo{pages}{134--144}.
+\newblock \DOIprefix\doi{10.1177/0013916592241006}.
+%Type = Article
+\bibitem[{{Huddart-Kennedy} et~al.(2009){Huddart-Kennedy}, Beckley, McFarlane
+  and Nadeau}]{huddart-kennedyRuralUrbanDifferencesEnvironmental2009}
+\bibinfo{author}{{Huddart-Kennedy}, E.}, \bibinfo{author}{Beckley, T.M.},
+  \bibinfo{author}{McFarlane, B.L.}, \bibinfo{author}{Nadeau, S.},
+  \bibinfo{year}{2009}.
+\newblock \bibinfo{title}{Rural-{{Urban Differences}} in {{Environmental
+  Concern}} in {{Canada}}}.
+\newblock \bibinfo{journal}{Rural Sociology} \bibinfo{volume}{74},
+  \bibinfo{pages}{309--329}.
+\newblock \DOIprefix\doi{10.1526/003601109789037268}.
+%Type = Article
+\bibitem[{Johnston and Pattie(2013)}]{johnstonLearningElectoralGeography2013}
+\bibinfo{author}{Johnston, R.}, \bibinfo{author}{Pattie, C.},
+  \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{Learning electoral geography? {{Party}} campaigning,
+  constituency marginality and voting at the 2010 {{British}} general
+  election}.
+\newblock \bibinfo{journal}{Transactions of the Institute of British
+  Geographers} \bibinfo{volume}{38}, \bibinfo{pages}{285--298}.
+\newblock \DOIprefix\doi{10.1111/j.1475-5661.2012.00527.x}.
+%Type = Article
+\bibitem[{Kenny and Luca(2021)}]{kennyUrbanruralPolarisationPolitical2021}
+\bibinfo{author}{Kenny, M.}, \bibinfo{author}{Luca, D.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{The urban-rural polarisation of political
+  disenchantment: An investigation of social and political attitudes in 30
+  {{European}} countries}.
+\newblock \bibinfo{journal}{Cambridge Journal of Regions, Economy and Society}
+  \bibinfo{volume}{14}, \bibinfo{pages}{565--582}.
+\newblock \DOIprefix\doi{10.1093/cjres/rsab012}.
+%Type = Article
+\bibitem[{Klineberg et~al.(1998)Klineberg, McKeever and
+  Rothenbach}]{klinebergDemographicPredictorsEnvironmental1998}
+\bibinfo{author}{Klineberg, S.L.}, \bibinfo{author}{McKeever, M.},
+  \bibinfo{author}{Rothenbach, B.}, \bibinfo{year}{1998}.
+\newblock \bibinfo{title}{Demographic {{Predictors}} of {{Environmental
+  Concern}}: {{It Does Make}} a {{Difference How It}}'s {{Measured}}}.
+\newblock \bibinfo{journal}{Social Science Quarterly} \bibinfo{volume}{79},
+  \bibinfo{pages}{734--753}.
+\newblock \href{http://arxiv.org/abs/42863844}{{\tt arXiv:42863844}}.
+%Type = Article
+\bibitem[{Konisky et~al.(2016)Konisky, Hughes and
+  Kaylor}]{koniskyExtremeWeatherEvents2016}
+\bibinfo{author}{Konisky, D.M.}, \bibinfo{author}{Hughes, L.},
+  \bibinfo{author}{Kaylor, C.H.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Extreme weather events and climate change concern}.
+\newblock \bibinfo{journal}{Climatic Change} \bibinfo{volume}{134},
+  \bibinfo{pages}{533--547}.
+\newblock \DOIprefix\doi{10.1007/s10584-015-1555-3}.
+%Type = Article
+\bibitem[{Larcom et~al.(2019)Larcom, She and
+  Van~Gevelt}]{larcomUKSummerHeatwave2019a}
+\bibinfo{author}{Larcom, S.}, \bibinfo{author}{She, P.W.},
+  \bibinfo{author}{Van~Gevelt, T.}, \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{The {{UK}} summer heatwave of 2018 and public concern
+  over energy security}.
+\newblock \bibinfo{journal}{Nature Climate Change} \bibinfo{volume}{9},
+  \bibinfo{pages}{370--373}.
+\newblock \DOIprefix\doi{10.1038/s41558-019-0460-6}.
+%Type = Article
+\bibitem[{Laver and Garry(2000)}]{laverEstimatingPolicyPositions2000}
+\bibinfo{author}{Laver, M.}, \bibinfo{author}{Garry, J.}, \bibinfo{year}{2000}.
+\newblock \bibinfo{title}{Estimating {{Policy Positions}} from {{Political
+  Texts}}}.
+\newblock \bibinfo{journal}{American Journal of Political Science}
+  \bibinfo{volume}{44}, \bibinfo{pages}{619--634}.
+\newblock \DOIprefix\doi{10.2307/2669268},
+  \href{http://arxiv.org/abs/2669268}{{\tt arXiv:2669268}}.
+%Type = Article
+\bibitem[{Lo and Jim(2015)}]{loComeRainShine2015}
+\bibinfo{author}{Lo, A.Y.}, \bibinfo{author}{Jim, C.Y.}, \bibinfo{year}{2015}.
+\newblock \bibinfo{title}{Come rain or shine? {{Public}} expectation on local
+  weather change and differential effects on climate change attitude}.
+\newblock \bibinfo{journal}{Public Understanding of Science}
+  \bibinfo{volume}{24}, \bibinfo{pages}{928--942}.
+\newblock \DOIprefix\doi{10.1177/0963662513517483}.
+%Type = Misc
+\bibitem[{Madhugiri(2022)}]{madhugiriExtractTextImages2022}
+\bibinfo{author}{Madhugiri, D.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Extract {{Text}} from {{Images Quickly Using
+  Keras-OCR Pipeline}}}.
+%Type = Article
+\bibitem[{McCright and Dunlap(2011)}]{mccrightPoliticizationClimateChange2011}
+\bibinfo{author}{McCright, A.M.}, \bibinfo{author}{Dunlap, R.E.},
+  \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{The {{Politicization}} of {{Climate Change}} and
+  {{Polarization}} in the {{American Public}}'s {{Views}} of {{Global
+  Warming}}, 2001--2010}.
+\newblock \bibinfo{journal}{The Sociological Quarterly} \bibinfo{volume}{52},
+  \bibinfo{pages}{155--194}.
+\newblock \DOIprefix\doi{10.1111/j.1533-8525.2011.01198.x}.
+%Type = Misc
+\bibitem[{Milazzo et~al.(2020)Milazzo, Trumm and
+  Townsley}]{milazzo2020openelections}
+\bibinfo{author}{Milazzo, C.}, \bibinfo{author}{Trumm, S.},
+  \bibinfo{author}{Townsley, J.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{{{OpenElections}} leaflet data, 2010-2019}.
+\newblock \bibinfo{howpublished}{Nottingham, UK}.
+%Type = Article
+\bibitem[{N{\'u}{\~n}ez(2021)}]{nunezEffectsLocalCampaigning2021}
+\bibinfo{author}{N{\'u}{\~n}ez, L.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{The effects of local campaigning in {{Great
+  Britain}}}.
+\newblock \bibinfo{journal}{Electoral Studies} \bibinfo{volume}{73},
+  \bibinfo{pages}{102384}.
+\newblock \DOIprefix\doi{10.1016/j.electstud.2021.102384}.
+%Type = Article
+\bibitem[{Ogunbode et~al.(2020)Ogunbode, Rouven and
+  Gisela}]{ogunbodeIndividualLocalFlooding2020}
+\bibinfo{author}{Ogunbode, C.A.}, \bibinfo{author}{Rouven, D.},
+  \bibinfo{author}{Gisela, B.}, \bibinfo{year}{2020}.
+\newblock \bibinfo{title}{Individual and local flooding experiences are
+  differentially associated with subjective attribution and climate change
+  concern}.
+\newblock \bibinfo{journal}{Climatic Change} \bibinfo{volume}{162},
+  \bibinfo{pages}{2243--2255}.
+\newblock \DOIprefix\doi{10.1007/s10584-020-02793-4}.
+%Type = Article
+\bibitem[{Osberghaus and Demski(2019)}]{osberghausCausalEffectFlood2019}
+\bibinfo{author}{Osberghaus, D.}, \bibinfo{author}{Demski, C.},
+  \bibinfo{year}{2019}.
+\newblock \bibinfo{title}{The causal effect of flood experience on climate
+  engagement: Evidence from search requests for green electricity}.
+\newblock \bibinfo{journal}{Climatic Change} \bibinfo{volume}{156},
+  \bibinfo{pages}{191--207}.
+\newblock \DOIprefix\doi{10.1007/s10584-019-02468-9}.
+%Type = Article
+\bibitem[{Osberghaus and Fugger(2022)}]{osberghausNaturalDisastersClimate2022}
+\bibinfo{author}{Osberghaus, D.}, \bibinfo{author}{Fugger, C.},
+  \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Natural disasters and climate change beliefs: {{The}}
+  role of distance and prior beliefs}.
+\newblock \bibinfo{journal}{Global Environmental Change} \bibinfo{volume}{74},
+  \bibinfo{pages}{102515}.
+\newblock \DOIprefix\doi{10.1016/j.gloenvcha.2022.102515}.
+%Type = Article
+\bibitem[{Pateman(2011)}]{patemanRuralUrbanAreas2011}
+\bibinfo{author}{Pateman, T.}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{Rural and urban areas: Comparing lives using
+  rural/urban classifications}.
+\newblock \bibinfo{journal}{Regional Trends} \bibinfo{volume}{43},
+  \bibinfo{pages}{11--86}.
+\newblock \DOIprefix\doi{10.1057/rt.2011.2}.
+%Type = Article
+\bibitem[{Pattie et~al.(2017)Pattie, Hartman and
+  Johnston}]{pattieIncumbentPartiesIncumbent2017a}
+\bibinfo{author}{Pattie, C.}, \bibinfo{author}{Hartman, T.},
+  \bibinfo{author}{Johnston, R.}, \bibinfo{year}{2017}.
+\newblock \bibinfo{title}{Incumbent parties, incumbent {{MPs}} and the
+  effectiveness of constituency campaigns: {{Evidence}} from the 2015 {{UK}}
+  general election}.
+\newblock \bibinfo{journal}{The British Journal of Politics and International
+  Relations} \bibinfo{volume}{19}, \bibinfo{pages}{824--841}.
+\newblock \DOIprefix\doi{10.1177/1369148117718710}.
+%Type = Article
+\bibitem[{Pattie and Johnston(2016)}]{pattieResourcingConstituencyCampaign2016}
+\bibinfo{author}{Pattie, C.}, \bibinfo{author}{Johnston, R.},
+  \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Resourcing the constituency campaign in the {{UK}}}.
+\newblock \bibinfo{journal}{Party Politics} \bibinfo{volume}{22},
+  \bibinfo{pages}{203--214}.
+\newblock \DOIprefix\doi{10.1177/1354068815605674}.
+%Type = Article
+\bibitem[{Pogorelis et~al.(2005)Pogorelis, Maddens, Swenden and
+  Fabre}]{pogorelisIssueSalienceRegional2005}
+\bibinfo{author}{Pogorelis, R.}, \bibinfo{author}{Maddens, B.},
+  \bibinfo{author}{Swenden, W.}, \bibinfo{author}{Fabre, E.},
+  \bibinfo{year}{2005}.
+\newblock \bibinfo{title}{Issue salience in regional and national party
+  manifestos in the {{UK}}}.
+\newblock \bibinfo{journal}{West European Politics} \bibinfo{volume}{28},
+  \bibinfo{pages}{992--1014}.
+\newblock \DOIprefix\doi{10.1080/01402380500310667}.
+%Type = Article
+\bibitem[{Pringle and Agnew(2003)}]{pringleClassicsHumanGeography2003}
+\bibinfo{author}{Pringle, D.}, \bibinfo{author}{Agnew, J.A.},
+  \bibinfo{year}{2003}.
+\newblock \bibinfo{title}{Classics in human geography revisited}.
+\newblock \bibinfo{journal}{Progress in Human Geography} \bibinfo{volume}{27},
+  \bibinfo{pages}{605--614}.
+\newblock \DOIprefix\doi{10.1191/0309132503ph451xx}.
+%Type = Article
+\bibitem[{Prosser(2018)}]{prosserStrangeDeathMultiparty2018}
+\bibinfo{author}{Prosser, C.}, \bibinfo{year}{2018}.
+\newblock \bibinfo{title}{The strange death of multi-party {{Britain}}: The
+  {{UK General Election}} of 2017}.
+\newblock \bibinfo{journal}{West European Politics} \bibinfo{volume}{41},
+  \bibinfo{pages}{1226--1236}.
+\newblock \DOIprefix\doi{10.1080/01402382.2018.1424838}.
+%Type = Misc
+\bibitem[{Rosebrock(2022)}]{rosebrockCorrectingTextOrientation2022}
+\bibinfo{author}{Rosebrock, A.}, \bibinfo{year}{2022}.
+\newblock \bibinfo{title}{Correcting {{Text Orientation}} with {{Tesseract}}
+  and {{Python}}}.
+%Type = Article
+\bibitem[{Rudman et~al.(2013)Rudman, McLean and
+  Bunzl}]{rudmanWhenTruthPersonally2013a}
+\bibinfo{author}{Rudman, L.A.}, \bibinfo{author}{McLean, M.C.},
+  \bibinfo{author}{Bunzl, M.}, \bibinfo{year}{2013}.
+\newblock \bibinfo{title}{When {{Truth Is Personally Inconvenient}},
+  {{Attitudes Change}}: {{The Impact}} of {{Extreme Weather}} on {{Implicit
+  Support}} for {{Green Politicians}} and {{Explicit Climate-Change Beliefs}}}.
+\newblock \bibinfo{journal}{Psychological Science} \bibinfo{volume}{24},
+  \bibinfo{pages}{2290--2296}.
+\newblock \DOIprefix\doi{10.1177/0956797613492775}.
+%Type = Article
+\bibitem[{Samdahl and
+  Robertson(1989)}]{samdahlSocialDeterminantsEnvironmental1989}
+\bibinfo{author}{Samdahl, D.M.}, \bibinfo{author}{Robertson, R.},
+  \bibinfo{year}{1989}.
+\newblock \bibinfo{title}{Social {{Determinants}} of {{Environmental Concern}}:
+  {{Specification}} and {{Test}} of the {{Model}}}.
+\newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{21},
+  \bibinfo{pages}{57--81}.
+\newblock \DOIprefix\doi{10.1177/0013916589211004}.
+%Type = Article
+\bibitem[{Sisco(2021)}]{siscoEffectsWeatherExperiences2021}
+\bibinfo{author}{Sisco, M.R.}, \bibinfo{year}{2021}.
+\newblock \bibinfo{title}{The effects of weather experiences on climate change
+  attitudes and behaviors}.
+\newblock \bibinfo{journal}{Current Opinion in Environmental Sustainability}
+  \bibinfo{volume}{52}, \bibinfo{pages}{111--117}.
+\newblock \DOIprefix\doi{10.1016/j.cosust.2021.09.001}.
+%Type = Article
+\bibitem[{Trumm et~al.(2023)Trumm, Milazzo and
+  Duggan}]{trummParliamentaryCandidatesTheir2023a}
+\bibinfo{author}{Trumm, S.}, \bibinfo{author}{Milazzo, C.},
+  \bibinfo{author}{Duggan, A.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{Parliamentary candidates and their campaign messages
+  at the 2019 {{General Election}}}.
+\newblock \bibinfo{journal}{Politics} ,
+  \bibinfo{pages}{02633957231186384}\DOIprefix\doi{10.1177/02633957231186384}.
+%Type = Article
+\bibitem[{Visconti and Young(2024)}]{viscontiEffectDifferentExtreme2024}
+\bibinfo{author}{Visconti, G.}, \bibinfo{author}{Young, K.},
+  \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{The effect of different extreme weather events on
+  attitudes toward climate change}.
+\newblock \bibinfo{journal}{PLOS ONE} \bibinfo{volume}{19},
+  \bibinfo{pages}{e0300967}.
+\newblock \DOIprefix\doi{10.1371/journal.pone.0300967}.
+%Type = Article
+\bibitem[{Watson et~al.(2024)Watson, Uberoi and
+  Loft}]{watsonGeneralElectionResults2024}
+\bibinfo{author}{Watson, C.}, \bibinfo{author}{Uberoi, E.},
+  \bibinfo{author}{Loft, P.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{General election results from 1918 to 2019} .
+
+\end{thebibliography}

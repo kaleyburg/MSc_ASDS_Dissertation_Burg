@@ -1,0 +1,32 @@
+\contentsline {section}{\numberline {1}Abstract}{3}{section.1}%
+\contentsline {section}{\numberline {2}Introduction}{4}{section.2}%
+\contentsline {section}{\numberline {3}Literature Review}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Public Opinion and Political Communication}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Factors Influencing Public Opinion}{6}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Weather Events and Climate Attitudes}{6}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Other Correlates of Voting Behaviours}{7}{subsubsection.3.2.2}%
+\contentsline {paragraph}{Rural vs. Urban Constituencies}{7}{subsubsection.3.2.2}%
+\contentsline {paragraph}{Remaining Demographic Factors}{8}{subsubsection.3.2.2}%
+\contentsline {section}{\numberline {4}Data and Methods}{9}{section.4}%
+\contentsline {paragraph}{Controls}{10}{section.4}%
+\contentsline {section}{\numberline {5}Models and Results}{12}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Descriptive Statistics}{12}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Two-Way Fixed Effect Model Results}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}One-Way Fixed Effect Model Results}{19}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Discussion}{22}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Limitations}{23}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Conclusion}{23}{section.7}%
+\contentsline {section}{\numberline {8}Appendix}{24}{section.8}%
+\contentsline {subsection}{\numberline {8.1} Models Divided By Year and Party}{24}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Explanation of Models Divided By Year and Party}{24}{subsection.8.2}%
+\contentsline {paragraph}{2010 Election}{24}{subsection.8.2}%
+\contentsline {paragraph}{2015 Election}{26}{subsection.8.2}%
+\contentsline {paragraph}{2017 Election}{26}{subsection.8.2}%
+\contentsline {paragraph}{2019 Election}{26}{subsection.8.2}%
+\contentsline {paragraph}{Conservative Party}{27}{subsection.8.2}%
+\contentsline {paragraph}{Labour Party}{27}{subsection.8.2}%
+\contentsline {paragraph}{Liberal Democrat Party}{27}{subsection.8.2}%
+\contentsline {paragraph}{Green Party}{27}{subsection.8.2}%
+\contentsline {paragraph}{UK Independence Party}{28}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}UKIP Example Images}{28}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Full Mean Environmental Mention Distribution Map}{29}{subsection.8.4}%

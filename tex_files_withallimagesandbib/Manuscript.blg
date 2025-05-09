@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Manuscript.aux
+Reallocating 'name_of_file' (item size: 1) to 16 items.
+The style file: elsarticle-harv.bst
+Illegal, another \bibstyle command---line 127 of file Manuscript.aux
+ : \bibstyle
+ :          {elsarticle-harv}
+I'm skipping whatever remains of this command
+Reallocating 'name_of_file' (item size: 1) to 14 items.
+Illegal, another \bibdata command---line 217 of file Manuscript.aux
+ : \bibdata
+ :         {Dissertation2}
+I'm skipping whatever remains of this command
+Database file #1: Dissertation2.bib
+Warning--to sort, need author or key in KerasocrKeras_ocrDocumentation
+Warning--to sort, need author or key in MeteostatPyPI
+Warning--to sort, need author or key in 2011CensusOffice
+Warning--to sort, need author or key in RuralUrbanClassification
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Warning--missing institution in binesRoutineManualWorkers2024
+Warning--empty journal in cracknell2010GeneralElection2024
+Warning--empty journal in watsonGeneralElectionResults2024
+You've used 62 entries,
+            2990 wiz_defined-function locations,
+            1097 strings with 20199 characters,
+and the built_in function-call counts, 37942 in all, are:
+= -- 3112
+> -- 1132
+< -- 38
++ -- 467
+- -- 381
+* -- 3981
+:= -- 5459
+add.period$ -- 229
+call.type$ -- 62
+change.case$ -- 437
+chr.to.int$ -- 62
+cite$ -- 77
+duplicate$ -- 2893
+empty$ -- 2937
+format.name$ -- 559
+if$ -- 7098
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 526
+newline$ -- 368
+num.names$ -- 232
+pop$ -- 972
+preamble$ -- 1
+purify$ -- 375
+quote$ -- 0
+skip$ -- 858
+stack$ -- 0
+substring$ -- 1939
+swap$ -- 1957
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 558
+warning$ -- 7
+while$ -- 270
+width$ -- 0
+write$ -- 953
+(There were 2 error messages)

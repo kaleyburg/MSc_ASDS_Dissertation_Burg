@@ -1,0 +1,19 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'old_paper.blg'
+[159] biber-MSWIN64:340> INFO - === 
+[216] Biber.pm:419> INFO - Reading 'old_paper.bcf'
+[415] Biber.pm:979> INFO - Found 62 citekeys in bib section 0
+[447] Biber.pm:4419> INFO - Processing section 0
+[464] Biber.pm:4610> INFO - Looking for bibtex file 'Dissertation2.bib' for section 0
+[544] bibtex.pm:1713> INFO - LaTeX decoding ...
+[823] bibtex.pm:1519> INFO - Found BibTeX data source 'Dissertation2.bib'
+[1669] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1669] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1669] Biber.pm:4239> INFO - Sorting list 'apa/apasortcite//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[1669] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[2079] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2079] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2079] Biber.pm:4239> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[2080] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[2322] bbl.pm:660> INFO - Writing 'old_paper.bbl' with encoding 'UTF-8'
+[2542] bbl.pm:763> INFO - Output to old_paper.bbl
