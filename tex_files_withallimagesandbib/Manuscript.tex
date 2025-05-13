@@ -8,18 +8,27 @@
 \usepackage{booktabs}
 \usepackage{wrapfig}
 \usepackage{fancyhdr}
+\usepackage{booktabs} % For professional-quality tables
 \usepackage{float} 
-
-% Bibliography settings:
-\bibliographystyle{elsarticle-harv} % Numeric citation style (you can change this if needed)
-
+\usepackage{tabularx} % For dynamic table column widths
 % Title and author info (you can adjust this to suit your paper)
 \title{Variance in Environmental Mentions Across Constituencies in England}
-\author{Kaley Burg}
-\address{The University of Vienna}
 
-\author{Martyn Egan}
-\address{Trinity College Dublin}
+\author[1]{Kaley Burg\texorpdfstring{\fnref{fn1}}{}}
+\author[2]{Martyn Egan\texorpdfstring{\corref{cor1}}{}}
+
+\cortext[cor1]{Corresponding author.}
+
+\ead{kaley.burg@univie.ac.at}
+\ead{martyn.egan@tcd.ie}
+
+\address[1]{Trinity College Dublin, College Green, Dublin 2, Ireland}
+\address[2]{Trinity College Dublin, College Green, Dublin 2, Ireland}
+
+\fntext[fn1]{Present address: The University of Vienna, Kolingasse 14-16, Room 6.55, A-1090 Vienna, Austria.}
+\date{\today} % Date of the document
+
+\usepackage{lineno} % For line numbers
 
 % Customize the page style for this specific page
 \fancypagestyle{special}{%
@@ -29,19 +38,47 @@
 	\fancyfoot[R]{\thepage} % put the page number on the right side in the footer
 }
 
-
 \begin{document}
-	
-	\begin{abstract}
-		This study measures the variation of leaflet campaign messages by constituency in England within each major political party (Conservative, Labour, Liberal Democrats, Green, and UK Independence) during the 2010, 2015, 2017, and 2019 General UK Elections. This is done using leaflet data from OpenElections \citep{milazzo2020openelections}. The text from each leaflet is scraped and analysed with the Laver \& Garry Quanteda dictionary \citep{laverEstimatingPolicyPositions2000} on policy positions with frequencies of environmental or climate mentions counted for each constituency by year and political party. These are compared to the other constituencies belonging to the same party. Variance among constituencies in environmental mentions is compared to weather data in England as well as previous election voteshare and 2011 census data regarding income, age, and education level of citizens within the constituencies. The aim of this study is to determine the frequencies of topic mentions and identify factors which are most strongly related to these changes in frequency in local politician campaigns in UK general elections.
-		
 
-	\end{abstract}
-	
-	\maketitle % Prints the title page
-				
-	\newpage
-	
+
+\maketitle % Prints the title page
+
+\section*{Acknowledgments}
+
+
+\large{fix your file names for figures and lectures and tables, and make sure to use the same name in the text as in the figure/table caption. make a new folder for submission docs with new dataframe names too.}	
+\noindent			
+I would like to express my gratitude to all of the lecturers in this program as well as my supervisor Dr. Martyn Egan. This course exceeded my expectations in what I learned and showed me what is possible with data.
+			\vspace{0.5cm}
+
+\noindent		
+I would also like to thank the Research IT team at Trinity College Dublin for allowing me HPC Cluster access on Callan, this project would not have been possible without these resources.
+
+			\vspace{0.5cm}
+\noindent
+Lastly, I express my gratitude to my friends at Trinity and the family members who supported me. Namely my older sister, whom I should have listened to 5 years ago when she told me I would enjoy coding, she was as usual, correct.
+
+\section*{Declaration of Interest Statement}
+
+\noindent
+The authors declare that there is no conflict of interest regarding the publication of this paper.
+
+\newpage
+\section{Abstract}
+\noindent
+This study examines the variation in campaign leaflet messages across constituencies in England within major political parties (Conservative, Labour, Liberal Democrats, Green, and UK Independence) during the 2010, 2015, 2017, and 2019 UK General Elections. Using leaflet data from OpenElections \citep{milazzo2020openelections}, text is scraped and analyzed with the Laver \& Garry Quanteda dictionary \citep{laverEstimatingPolicyPositions2000} to quantify frequencies of environmental or climate mentions by constituency, year, and political party. These frequencies are compared across constituencies within the same party and analyzed against weather data, previous election vote shares, and 2011 census data on income, age, and education levels. The study aims to identify factors most strongly associated with variations in environmental mentions in local political campaigns during UK general elections.
+
+\vspace{0.5cm}
+
+\noindent
+\textbf{Keywords:} Campaigning, Environment, Climate Change, Political Parties, UK General Elections, Constituency Variance, OCR
+\vspace{0.5cm}
+
+\noindent
+\textbf{Word Count:} x words (excluding references)
+
+
+\newpage
 	\section{Introduction}
 	
 Issue salience within party manifestos in England can be used to shed light on both the current political climate as well as the major goals and priorities of a political party. For instance, past research has shown that different parties consistently highlight different issues, such as the Labour Party with employment, the Conservative Party with law and order and rural life, and the Liberal Democrats with the environment \citep{pogorelisIssueSalienceRegional2005}. Beyond variance in messaging and campaigning between the political parties, variance exists within parties themselves. Within political parties in the United Kingdom, the amount of campaigning done and resources utilised is determined by constituency resources (rather than whole party resources) and incumbency status within the constituency that the campaign takes place \citep{pattieIncumbentPartiesIncumbent2017a}. This demonstrates the need to understand party campaigns on the constituency level in order to capture and understand the current political sphere.
@@ -142,18 +179,17 @@ The second accuracy score describes the frequency at which the metadata that was
 
 \vspace{0.5cm}
 
-
 \begin{table}[!htbp]  
 	\caption{Accuracy of Text-Scraping Methods on Environmental Issues} 
 	\label{tab:envaccuracy} 
-	\begin{tabular}{|l|r|r|r|}
+	\begin{tabularx}{\textwidth}{Xccc}
 		\hline
 		Condition & Count & Total & Accuracy \\ 
 		\hline
 		Accuracy of OCR detection when 'Environment' is in metadata & 2417 & 2726 & 88.66\% \\
 		Accuracy of 'Environment' in metadata when OCR detects mentions & 2417 & 4162 & 58.07\% \\
 		\hline
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 
@@ -167,18 +203,20 @@ Both Table~\ref{tab:econaccuracy} and Table~\ref{tab:envaccuracy} demonstrate a 
 
 \vspace{1cm}
 
-\begin{table}[!htbp] 
-	\caption{Accuracy of Text-Scraping Methods on Economic Issues} 
-	\label{tab:econaccuracy} 
-	\begin{tabular}{lrrl}
-		\toprule
+\begin{table}[!htbp]
+	\centering
+	\caption{Accuracy of Text-Scraping Methods on Economic Issues}
+	\label{tab:econaccuracy}
+	\begin{tabularx}{\textwidth}{Xccc}
+		\hline
 		Condition & Count & Total & Accuracy \\
-		\midrule
+		\hline
 		Accuracy of OCR detection when 'Economy' is in metadata & 5322 & 5373 & 99.05\% \\
 		Accuracy of 'Economy' in metadata when OCR detects mentions & 5322 & 7073 & 75.24\% \\
-		\bottomrule
-	\end{tabular}\\
+		\hline
+	\end{tabularx}
 \end{table}
+
 
 
 \vspace{1cm}
@@ -190,7 +228,7 @@ Both Table~\ref{tab:econaccuracy} and Table~\ref{tab:envaccuracy} demonstrate a 
 % Include the image with text wrapping
 \begin{wrapfigure}{l}{0.58\textwidth} % 'l' for left alignment, 0.58 of the text width
 	\centering
-	\includegraphics[width=0.58\textwidth]{ukip_example.png}
+	\includegraphics[width=0.58\textwidth]{plots/ukip_example_1.png}
 	\caption{OCR Method on UKIP Example}
 	\label{fig:ukip_example}
 \end{wrapfigure}
@@ -199,8 +237,7 @@ Both Table~\ref{tab:econaccuracy} and Table~\ref{tab:envaccuracy} demonstrate a 
 %%
 
 
-One possible explanation for the variation between the accuracy levels regarding environmental mentions is that the human coders have inaccurately labeled the leaflets as having environmental mentions when none are actually mentioned. An example of this is in Figure~\ref{fig:ukip_example}\footnote{The unmarked leaflet is shown in the appendix for greater legibility}, where the metadata did include the environment as a mentioned topic, but the OCR method does not detect any mentions of the environment. Upon closer examination, it appears that the OCR method performs relatively well and that there does not seem to be any mention of the environment in either of the images pertaining to that leaflet. This further confirms that the OCR text-scraping method is robust enough to use for later analysis of variation among environmental mentions. 
-
+One possible explanation for the variation between the accuracy levels regarding environmental mentions is that the human coders may have inconsistently labeled the leaflets as having environmental mentions when none are actually present. For instance, Figure~\ref{fig:ukip_example}\footnote{The unmarked leaflet is shown in the appendix for greater legibility} demonstrates a case where the metadata included the environment as a mentioned topic, but the OCR method does not detect any environmental mentions. Upon closer inspection, it appears that the OCR method performs accurately, as there are no discernible mentions of the environment in either of the images associated with that leaflet. This observation supports the robustness of the OCR text-scraping method and its suitability for subsequent analysis of variation in environmental mentions.
 
 Additionally, it is unclear exactly how the human coders are deciding which categories are mentioned in the leaflets. The OpenElection website allows any site visitor to upload or code a leaflet based on mentions and issues in the images. This introduces a great amount of variation in how the leaflets are potentially classified, as individuals may vary in their knowledge of politics or individuals may not detect all of the issues on the leaflet. As the accuracy levels show that the OCR method detects a high proportion of what is found by human coders and, as shown in Figure~\ref{fig:ukip_example}, the metadata may not be entirely accurate, it seems as though the OCR method detects the same things that human coders would but goes beyond that to identify themes that require more political knowledge than the average person has.
 
@@ -209,7 +246,7 @@ Additionally, it is unclear exactly how the human coders are deciding which cate
 
 \begin{wrapfigure}[23]{l}{0.55\textwidth}
 	\centering
-	\includegraphics[width=0.55\textwidth]{overall_env_mentions_new.png}
+	\includegraphics[width=0.55\textwidth]{plots/Overall_Environmental_Mentions.png}
 	\caption{Mean Environmental Mentions By Constituency}
 	\label{fig:meanenvbycon}
 \end{wrapfigure}
@@ -235,17 +272,17 @@ In contrast, dividing the environmental mentions map by parties and election yea
 	% Row 1
 	\begin{minipage}[t]{0.335\textwidth}
 		\centering
-		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/ConservativeParty_2010GeneralElection_Environmental_Mentions.png}
+		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/Conservative_Party_2010_General_Election_Environmental_Mentions.png}
 		\caption{Conservative Party}
 	\end{minipage}\hfill
 	\begin{minipage}[t]{0.335\textwidth}
 		\centering
-		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/GreenParty_2010GeneralElection_Environmental_Mentions.png}
+		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/Green_Party_2010_General_Election_Environmental_Mentions.png}
 		\caption{Green Party}
 	\end{minipage}\hfill
 	\begin{minipage}[t]{0.335\textwidth}
 		\centering
-		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/LabourParty_2010GeneralElection_Environmental_Mentions.png}
+		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/Labour_Party_2010_General_Election_Environmental_Mentions.png}
 		\caption{Labour Party}
 	\end{minipage}
 	
@@ -254,12 +291,12 @@ In contrast, dividing the environmental mentions map by parties and election yea
 	% Row 2
 	\begin{minipage}[t]{0.335\textwidth}
 		\centering
-		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/LiberalDemocrats_2010GeneralElection_Environmental_Mentions.png}
+		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/Liberal_Democrats_2010_General_Election_Environmental_Mentions.png}
 		\caption{Liberal Democrats}
 	\end{minipage}\hfill
 	\begin{minipage}[t]{0.335\textwidth}
 		\centering
-		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/UKIndependenceParty_2010GeneralElection_Environmental_Mentions.png}
+		\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{plots/UK_Independence_Party_2010_General_Election_Environmental_Mentions.png}
 		\caption{UK Independence Party}
 	\end{minipage}
 	
@@ -288,7 +325,7 @@ The distribution of environmental mentions shown in Figure~\ref{fig:env_mentions
 % Count of Observations by Year
 \begin{figure}[htbp]  % Use [H] to place the figure exactly here
 	\centering
-	\includegraphics[width=\textwidth, height=0.7\textheight, keepaspectratio]{count_by_year.png} % Use full text width, adjust height
+	\includegraphics[width=\textwidth, height=0.7\textheight, keepaspectratio]{plots/total_count_by_election_bw.png} % Use full text width, adjust height
 	\caption{Count of Observations by Year}
 	\label{fig:count_by_year}
 \end{figure}
@@ -299,7 +336,7 @@ The distribution of environmental mentions shown in Figure~\ref{fig:env_mentions
 % Count of Observations by Party and Year
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\textwidth, height=0.6\textheight, keepaspectratio]{count_by_party_year.png} % Use full text width, adjust height
+	\includegraphics[width=\textwidth, height=0.6\textheight, keepaspectratio]{plots/total_mentions_by_party_year_bw.png} % Use full text width, adjust height
 	\caption{Count of Observations by Party and Year}
 	\label{fig:count_by_party_year}
 \end{figure}
@@ -308,7 +345,7 @@ The distribution of environmental mentions shown in Figure~\ref{fig:env_mentions
 % Percentages
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\textwidth, height=0.6\textheight, keepaspectratio]{env_mentions_percentage.png} % Use full text width, adjust height
+	\includegraphics[width=\textwidth, height=0.6\textheight, keepaspectratio]{plots/env_mentions_percentage_bw.png} % Use full text width, adjust height
 	\caption{Percentage of Environmental Mentions by Party and Year}
 	\label{fig:env_mentions_perc}
 \end{figure}
@@ -497,14 +534,6 @@ Tthis project allows for large amounts of future research and highlights several
 
 
 
-\subsection{Full Mean Environmental Mention Distribution Map}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.38\textwidth]{plots/Overall_Environmental_Mentions.png}
-	\caption{Mean Environmental Mentions By Constituency}
-	\label{fig:meanenvbyconold}
-\end{figure}
 
 
 

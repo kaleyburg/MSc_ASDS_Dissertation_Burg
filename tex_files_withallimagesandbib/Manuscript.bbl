@@ -11,30 +11,6 @@
 \providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
 \providecommand{\bibinfo}[2]{#2}
 \ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
-%Type = Misc
-\bibitem[{201()}]{2011CensusOffice}
-, .
-\newblock \bibinfo{title}{2011 {{Census}} - {{Office}} for {{National
-  Statistics}}}.
-\newblock \bibinfo{howpublished}{https://www.ons.gov.uk/census/2011census}.
-%Type = Misc
-\bibitem[{Ker()}]{KerasocrKeras_ocrDocumentation}
-, .
-\newblock \bibinfo{title}{Keras-ocr --- keras\_ocr documentation}.
-\newblock
-  \bibinfo{howpublished}{https://keras-ocr.readthedocs.io/en/latest/index.html}.
-%Type = Misc
-\bibitem[{Met()}]{MeteostatPyPI}
-, .
-\newblock \bibinfo{title}{Meteostat {$\cdot$} {{PyPI}}}.
-\newblock \bibinfo{howpublished}{https://pypi.org/project/meteostat/}.
-%Type = Misc
-\bibitem[{Rur()}]{RuralUrbanClassification}
-, .
-\newblock \bibinfo{title}{Rural {{Urban Classification}} (2011) of
-  {{Westminster Parliamentary Constituencies}} in {{EN}}}.
-\newblock
-  \bibinfo{howpublished}{https://geoportal.statistics.gov.uk/datasets/7c142d94d43d4d1c9dd2d109f3cbf44a/about}.
 %Type = Article
 \bibitem[{Adams et~al.(2004)Adams, Clark, Ezrow and
   Glasgow}]{adamsUnderstandingChangeStability2004}
@@ -140,6 +116,11 @@
 \newblock \bibinfo{journal}{Journal of Enterprise Information Management}
   \bibinfo{volume}{18}, \bibinfo{pages}{568--585}.
 \newblock \DOIprefix\doi{10.1108/17410390510624016}.
+%Type = Misc
+\bibitem[{Contributors()}]{MeteostatPyPI}
+\bibinfo{author}{Contributors, M.}, .
+\newblock \bibinfo{title}{Meteostat: Pypi}.
+\newblock \bibinfo{howpublished}{https://pypi.org/project/meteostat/}.
 %Type = Article
 \bibitem[{Cracknell(2024)}]{cracknell2010GeneralElection2024}
 \bibinfo{author}{Cracknell, R.}, \bibinfo{year}{2024}.
@@ -327,6 +308,12 @@
 \newblock \bibinfo{journal}{Cambridge Journal of Regions, Economy and Society}
   \bibinfo{volume}{14}, \bibinfo{pages}{565--582}.
 \newblock \DOIprefix\doi{10.1093/cjres/rsab012}.
+%Type = Misc
+\bibitem[{KerasOCR()}]{KerasocrKeras_ocrDocumentation}
+KerasOCR, .
+\newblock \bibinfo{title}{Keras-ocr --- keras\_ocr documentation}.
+\newblock
+  \bibinfo{howpublished}{https://keras-ocr.readthedocs.io/en/latest/index.html}.
 %Type = Article
 \bibitem[{Klineberg et~al.(1998)Klineberg, McKeever and
   Rothenbach}]{klinebergDemographicPredictorsEnvironmental1998}
@@ -403,6 +390,18 @@
 \newblock \bibinfo{journal}{Electoral Studies} \bibinfo{volume}{73},
   \bibinfo{pages}{102384}.
 \newblock \DOIprefix\doi{10.1016/j.electstud.2021.102384}.
+%Type = Misc
+\bibitem[{{Office for National Statistics}()}]{RuralUrbanClassification}
+\bibinfo{author}{{Office for National Statistics}}, .
+\newblock \bibinfo{title}{Rural {{Urban Classification}} (2011) of
+  {{Westminster Parliamentary Constituencies}} in {{EN}}}.
+\newblock
+  \bibinfo{howpublished}{https://geoportal.statistics.gov.uk/datasets/7c142d94d43d4d1c9dd2d109f3cbf44a/about}.
+%Type = Article
+\bibitem[{{Office for National Statistics}(2011)}]{2011CensusOffice}
+\bibinfo{author}{{Office for National Statistics}}, \bibinfo{year}{2011}.
+\newblock \bibinfo{title}{2011 {{Census}} - {{Office}} for {{National
+  Statistics}}} \URLprefix \url{https://www.ons.gov.uk/census/2011census}.
 %Type = Article
 \bibitem[{Ogunbode et~al.(2020)Ogunbode, Rouven and
   Gisela}]{ogunbodeIndividualLocalFlooding2020}

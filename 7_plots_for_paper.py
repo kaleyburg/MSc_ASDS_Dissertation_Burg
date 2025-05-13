@@ -5,31 +5,37 @@ Created on Wed Jul 17 17:54:17 2024
 @author: kburg
 """
 
-#paper plots
+#fix keras stuff and then run and fix the plots to make the paper look more professional
 
+
+#paper plots
 
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import pandas as pd
 import os
+import zipfile
+import sys
+import csv
+
 
 # Set the working directory
-new_directory = 'C:/Users/kburg/OneDrive/Documents/Trinity/diss_all_other'
+new_directory = "C:/Users/kburg/OneDrive/Documents/GitHub/MSc_ASDS_Dissertation_Burg"
 os.chdir(new_directory)
 print("Current working directory:", os.getcwd())
 
 #making maps with environmental mentions
 
 # Load CSV data
-csv_file = "cluster/sorted_full_df_july4_5.csv"
+csv_file = "CSVandSHPfiles/sorted_full_df_july4_5.csv"
 df = pd.read_csv(csv_file)
 
 # Load shapefile for constituencies
-shapefile = "map2/westminster-parliamentary-constituencies.shp"
+shapefile = "CSVandSHPfiles/westminster-parliamentary-constituencies.shp"
 gdf = gpd.read_file(shapefile)
 
 # Load England boundary GeoJSON file
-england_boundary_path = "england-uk_1321.geojson"
+england_boundary_path = "CSVandSHPfiles/england-uk_1321.geojson"
 gdf_england = gpd.read_file(england_boundary_path)
 
 # Ensure the constituency names match the ones in the shapefile
@@ -49,6 +55,7 @@ merged_gdf = merged_gdf.merge(environment_mean, on='CONSTITUENCY', how='left')
 # Create a new DataFrame without the 'environment' column
 new_df = merged_gdf.drop(columns=['environment'])
 
+
 # Drop duplicate rows
 new_df = new_df.drop_duplicates()
 
@@ -56,14 +63,25 @@ new_df = new_df.drop_duplicates()
 unique_parties = merged_gdf['Party'].unique()
 unique_elections = merged_gdf['Election'].unique()
 
-# Function to plot and save environmental mentions by constituency
-def plot_and_save_environmental_mentions(data, output_folder, overall=False):
+
+# Function to plot and save environmental mentions
+def plot_and_save_environmental_mentions(data, overall=False):
+    # Base path: folder where this script is located
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Define full output path
+    output_folder = os.path.join(base_dir, "tex_files_withallimagesandbib", "plots")
     os.makedirs(output_folder, exist_ok=True)
-    
+    print("Output folder is:", os.path.abspath(output_folder))
+
+    # Function to clean up file names
+    def sanitize_filename(text):
+        return text.strip().replace(" ", "_").replace("/", "_")
+
     if overall:
-        # Plot overall constituency environmental mentions combined for all years and parties
+        print("Generating overall plot...")
         fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-        
+
         data.plot(column='mean_environmental_mentions', 
                   cmap='Greys', 
                   linewidth=0.8, 
@@ -72,22 +90,31 @@ def plot_and_save_environmental_mentions(data, output_folder, overall=False):
                   legend=True,
                   missing_kwds={'color': 'lightgrey', 'label': 'No Data', 'edgecolor': 'black'})
         
-        gdf_england.boundary.plot(ax=ax, linewidth=1, color='black')  # Add England boundary
-        
-        ax.set_title('Overall Mean Environmental Mentions by UK Constituency', fontdict={'fontsize': '15', 'fontweight' : '3'})
+        gdf_england.boundary.plot(ax=ax, linewidth=1, color='black')
+        ax.set_title('Overall Mean Environmental Mentions by UK Constituency', fontdict={'fontsize': '15', 'fontweight': '3'})
         ax.set_axis_off()
-        
-        output_file = os.path.join(output_folder, 'Overall_Environmental_Mentions.png')
+
+        filename = "Overall_Environmental_Mentions.png"
+        output_file = os.path.join(output_folder, filename)
         plt.savefig(output_file, dpi=300, bbox_inches='tight')
         plt.close(fig)
-        
+        print(f"Saved overall plot to {os.path.abspath(output_file)}")
+
     else:
+        unique_parties = data['Party'].unique()
+        unique_elections = data['Election'].unique()
+
         for party in unique_parties:
             for election in unique_elections:
+                print(f"Generating plot for {party} in {election}...")
                 subset_df = data[(data['Party'] == party) & (data['Election'] == election)]
-                
+
+                if subset_df.empty:
+                    print(f"No data for {party} in {election}, skipping.")
+                    continue
+
                 fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-                
+
                 subset_df.plot(column='mean_environmental_mentions', 
                                cmap='Greys', 
                                linewidth=0.8, 
@@ -95,61 +122,28 @@ def plot_and_save_environmental_mentions(data, output_folder, overall=False):
                                ax=ax, 
                                legend=True,
                                missing_kwds={'color': 'lightgrey', 'label': 'No Data', 'edgecolor': 'black'})
-                
-                gdf_england.boundary.plot(ax=ax, linewidth=1, color='black')  # Add England boundary
-                
-                ax.set_title(f'Mean Environmental Mentions by UK Constituency ({party}, {election})', fontdict={'fontsize': '15', 'fontweight' : '3'})
+
+                gdf_england.boundary.plot(ax=ax, linewidth=1, color='black')
+                ax.set_title(f'Mean Environmental Mentions by UK Constituency ({party}, {election})', fontdict={'fontsize': '15', 'fontweight': '3'})
                 ax.set_axis_off()
-                
-                output_file = os.path.join(output_folder, f'{party}_{election}_Environmental_Mentions.png')
+
+                safe_party = sanitize_filename(party)
+                safe_election = sanitize_filename(election)
+                filename = f"{safe_party}_{safe_election}_Environmental_Mentions.png"
+                output_file = os.path.join(output_folder, filename)
+
                 plt.savefig(output_file, dpi=300, bbox_inches='tight')
                 plt.close(fig)
-
-# Plot overall environmental mentions combined for all years and parties
-output_folder = './plots'
-plot_and_save_environmental_mentions(new_df, output_folder, overall=True)
-
-# Plot individual party and election combinations
-plot_and_save_environmental_mentions(merged_gdf, output_folder, overall=False)
+                print(f"Saved plot to {os.path.abspath(output_file)}")
 
 
+plot_and_save_environmental_mentions(new_df, overall=True)
+plot_and_save_environmental_mentions(merged_gdf, overall=False)
 
-## fix the plot names
-
-
-
-import os
-
-# Define the directory containing your images
-directory = r'C:\Users\kburg\OneDrive\Documents\Trinity\diss_all_other\plots'
-
-# Iterate over all files in the directory
-for filename in os.listdir(directory):
-    # Check if there is a space in the filename
-    if ' ' in filename:
-        # Create the new filename by replacing spaces with underscores
-        new_filename = filename.replace(' ', '_')
-        # Construct the full path for the old and new filenames
-        old_file = os.path.join(directory, filename)
-        new_file = os.path.join(directory, new_filename)
-        # Rename the file
-        os.rename(old_file, new_file)
-        print(f'Renamed: {filename} -> {new_filename}')
-
-print('Renaming completed.')
 
 
 #%% accuracy scores of my model
 
-
-
-import pandas as pd
-#pip install scikit-learn
-from sklearn import datasets
-import statsmodels.api as sm
-from stargazer.stargazer import Stargazer
-
-# Assuming your DataFrame is named df and contains the necessary data
 
 # Environment conditions
 environment_condition = df['environment'] >= 1
@@ -231,89 +225,5 @@ print(df_econ.to_latex(index=False,
     formatters={"name": str.upper},
     float_format="{:.1f}".format,
     ))  
-
-
-
-#%% showing a leaflet as an example
-
-import os 
-import matplotlib.pyplot as plt
-import zipfile
-import sys
-#pip install pandas
-import pandas as pd
-import csv
-
-#print(sys.executable)
-
-#INSTALLATION OF KERAS OCR
-
-#pip install -q keras-ocr
-
-#uncomment below for setup
-#pip install git+https://github.com/faustomorales/keras-ocr.git#egg=keras-ocr
-
-
-#uncomment below for tensorflow setup
-#pip install "tensorflow==2.15.1"
-
-#pip install --force-reinstall -v "tensorflow==2.15.1"
-
-
-import keras_ocr
-
-
-#CREATE PIPELINE
-
-pipeline = keras_ocr.pipeline.Pipeline()
-
-
-#SET WORKING DIRECTORY
-
-new_directory = 'C:/Users/kburg/OneDrive/Documents/Trinity/diss_all_other'
-os.chdir(new_directory)
-
-print("Current working directory:", os.getcwd())
-
-
-#READING IMAGES ONE AT A TIME
-
-image_filenames = ['28_1.jpg', '28_2.jpg']
-
-# Construct full paths for each image
-image_paths = [os.path.join(new_directory, filename) for filename in image_filenames]
-
-# Print paths to confirm
-for path in image_paths:
-    print("Image path:", path)
-
-# Read images from the constructed paths
-images = [keras_ocr.tools.read(img_path) for img_path in image_paths]
-
-# Optional: Print out the images to confirm they are loaded
-print("Number of images loaded:", len(images))
-# Read images from folder path to image object
-images = [keras_ocr.tools.read(img_path) for img_path in image_paths]
-
-
-
-# generate text predictions from the images
-prediction_groups = pipeline.recognize(images)
-
-prediction = pipeline.recognize(images)[0]
-
-
-# Create subplots
-fig, axs = plt.subplots(nrows=len(images), figsize=(10, 20))
-
-# Ensure axs is always a list
-if len(images) == 1:
-    axs = [axs]
-
-# Plot each image and its predictions
-for ax, image, predictions in zip(axs, images, prediction_groups):
-    keras_ocr.tools.drawAnnotations(image=image, predictions=predictions, ax=ax)
-
-plt.show()
 
 
