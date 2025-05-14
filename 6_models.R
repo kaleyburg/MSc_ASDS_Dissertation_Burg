@@ -22,11 +22,14 @@ library(plm)
 
 df <- read.csv("CSVandSHPfiles/model_data_revision.csv")
 raw_dat <- read.csv("CSVandSHPfiles/sorted_full_df_july4_5.csv")
+test <- read.csv('CSVandSHPfiles/final_merged_clean_230425.csv')
 
 final_merged = df
 
 #checking names
 colnames(final_merged)
+colnames(raw_dat)
+colnames(test)
 
 #conversion to factor variables
 final_merged$Party <- as.factor(final_merged$Party)

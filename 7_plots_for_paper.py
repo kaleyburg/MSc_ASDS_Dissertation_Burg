@@ -35,8 +35,9 @@ shapefile = "CSVandSHPfiles/westminster-parliamentary-constituencies.shp"
 gdf = gpd.read_file(shapefile)
 
 # Load England boundary GeoJSON file
-england_boundary_path = "CSVandSHPfiles/england-uk_1321.geojson"
-gdf_england = gpd.read_file(england_boundary_path)
+england_boundary_path = "CSVandSHPfiles/england-uk_1321.geojson"  # Replace with the correct GeoJSON file path
+gdf_england = gpd.read_file("CSVandSHPfiles/england-uk_1321.geojson", engine="fiona")
+
 
 # Ensure the constituency names match the ones in the shapefile
 df['constituency'] = df['Constituency'].str.lower().str.strip()
@@ -62,6 +63,7 @@ new_df = new_df.drop_duplicates()
 # Define unique parties and election years
 unique_parties = merged_gdf['Party'].unique()
 unique_elections = merged_gdf['Election'].unique()
+
 
 
 # Function to plot and save environmental mentions
@@ -99,6 +101,9 @@ def plot_and_save_environmental_mentions(data, overall=False):
         plt.savefig(output_file, dpi=300, bbox_inches='tight')
         plt.close(fig)
         print(f"Saved overall plot to {os.path.abspath(output_file)}")
+
+
+    
 
     else:
         unique_parties = data['Party'].unique()
@@ -140,6 +145,47 @@ def plot_and_save_environmental_mentions(data, overall=False):
 plot_and_save_environmental_mentions(new_df, overall=True)
 plot_and_save_environmental_mentions(merged_gdf, overall=False)
 
+
+# Function to plot and save environmental mentions with a narrower range
+def plot_and_save_environmental_mentions_narrow(data):
+    # Base path: folder where this script is located
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Define full output path
+    output_folder = os.path.join(base_dir, "tex_files_withallimagesandbib", "plots")
+    os.makedirs(output_folder, exist_ok=True)
+    print("Output folder is:", os.path.abspath(output_folder))
+
+    # Calculate the 90th percentile of mean environmental mentions
+    max_value = data['mean_environmental_mentions'].quantile(0.9)
+
+    # Filter data to include only values between 0 and the 90th percentile
+    filtered_data = data[data['mean_environmental_mentions'] <= max_value]
+
+    print("Generating narrow range plot...")
+    fig, ax = plt.subplots(1, 1, figsize=(15, 10))
+
+    filtered_data.plot(column='mean_environmental_mentions', 
+                       cmap='Greys', 
+                       linewidth=0.8, 
+                       edgecolor='0.8', 
+                       ax=ax, 
+                       legend=True,
+                       missing_kwds={'color': 'lightgrey', 'label': 'No Data', 'edgecolor': 'black'})
+
+    gdf_england.boundary.plot(ax=ax, linewidth=1, color='black')
+    ax.set_title('Mean Environmental Mentions by UK Constituency (0 to 90th Percentile)', 
+                 fontdict={'fontsize': '15', 'fontweight': '3'})
+    ax.set_axis_off()
+
+    filename = "Narrow_Range_Environmental_Mentions.png"
+    output_file = os.path.join(output_folder, filename)
+    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    print(f"Saved narrow range plot to {os.path.abspath(output_file)}")
+
+# Call the new function
+plot_and_save_environmental_mentions_narrow(new_df)
 
 
 #%% accuracy scores of my model
