@@ -3,6 +3,13 @@
 ## It also performs some data cleaning and transformation to ensure consistency and usability in subsequent analyses.   #####
 ####################
 
+#has been rerun to fix the issues with the other code
+
+#rerun and now includes proportion data
+
+#saved as modelrevision2.csv
+
+
 #R.home('bin')
 #install.packages("IRkernel")
 #IRkernel::installspec(user = FALSE)
@@ -181,13 +188,62 @@ census_selected <- census %>%
 
 head(census_selected)
 
+
+#simplifying further based on this info: Group	Parental occupation groups
+#1	Higher managerial, administrative and professional occupations
+#2	Intermediate operations
+#3	Small employers and account holders
+#4	Lower supervisory and technical occupations
+#5	Semi-routine and routine occupations
+#These groups could then be simplified as follows:
+
+#1: professional background
+#2 and 3: intermediate background
+#4, 5 and long term unemployed: working class background
+
+# Step 1: Create the background columns (raw counts)
+census_selected <- census_selected %>%
+  mutate(
+    Professional_Background = Higher_Managerial,
+    Intermediate_Background = Intermediate_Occupations + Small_Employers + Lower_Managerial,
+    Working_Class_Background = Lower_Supervisory + Semi_Routine + Routine_Occupations + Never_Worked_Unemployed
+  ) %>%
+  # Step 2: Add proportion columns (relative to All_Residents)
+  mutate(
+    Professional_Prop = Professional_Background / All_Residents,
+    Intermediate_Prop = Intermediate_Background / All_Residents,
+    Working_Class_Prop = Working_Class_Background / All_Residents
+  )
+
+head(census_selected)
+
+
 #remove duplicates
 census_selected <- census_selected %>%
   distinct()
 
 head(census_selected)
 
+# Add urban and rural population proportions
+census_selected <- census_selected %>%
+  mutate(
+    Urban_Prop = Total_Urban_Population / Total_Population,
+    Rural_Prop = Total_Rural_Population / Total_Population
+  )
 
+# Select only essential columns
+census_selected <- census_selected %>%
+  select(
+    constituency, Party, election, Classification, Median_Age,
+    Higher_Managerial, Lower_Managerial, Intermediate_Occupations, Small_Employers,
+    Lower_Supervisory, Semi_Routine, Routine_Occupations, Never_Worked, Long_Term_Unemployed,
+    mean_environmental_mentions, overall_weather_std, lib_share, lab_share, oth_share, con_share,
+    Professional_Background, Intermediate_Background, Working_Class_Background,
+    Professional_Prop, Intermediate_Prop, Working_Class_Prop,
+    Urban_Prop, Rural_Prop
+  )
+
+head(census_selected)
 
 
 #now load election data
@@ -213,7 +269,6 @@ colnames(subset_election_res)[which(colnames(subset_election_res) == "constituen
 subset_election_res$constituency <- tolower(subset_election_res$constituency)
 
 #convert constituency names to lowercase in the census data frame
-colnames(census_selected)[which(colnames(census_selected) == "geography")] <- "constituency"
 census_selected$constituency <- tolower(census_selected$constituency)
 head(census_selected)
 
@@ -243,6 +298,8 @@ final_merged <- merged_df %>%
   left_join(census_selected, by = "constituency")
 
 
+head(final_merged)
+
 #save the CSV file
 file_path <- "final_merged_clean_240425.csv"
 
@@ -254,30 +311,31 @@ cat("CSV file saved at:", file_path, "\n")
 
 colnames(final_merged)
 
+
+
 #saving data to use in models
-model_data <- final_merged[, c(
+model_data2 <- final_merged[, c(
   "constituency", "Median_Age", "Party", "election", "Classification",
-  "Total_Rural_Population", "Total_Urban_Population", "Total_Population",
-  "Higher_Managerial", "Lower_Managerial", "Intermediate_Occupations",
-  "Small_Employers", "Lower_Supervisory", "Semi_Routine", "Routine_Occupations",
-  "Never_Worked", "Long_Term_Unemployed",
+  "Rural_Prop", "Urban_Prop", "Total_Population",
+  "Professional_Background", "Intermediate_Background", "Working_Class_Background",
+  "Intermediate_Prop", "Working_Class_Prop", "Professional_Prop",
   "Full_Time_Students_Employed", "Full_Time_Students_Unemployed",
   "Full_Time_Students_Inactive",
   "overall_weather_std", "lib_share", "lab_share", "oth_share", "con_share",
-  "mean_environmental_mentions")
+  "mean_environmental_mentions", "environment_word_pct")
   ]
 
 
 #create count variables
-model_data <- model_data %>%
+model_data2 <- model_data2 %>%
   mutate(
     Total_Students_Count = Full_Time_Students_Employed + Full_Time_Students_Unemployed + Full_Time_Students_Inactive
   )
 
-model_data <- unique(model_data)
-head(model_data)
+model_data2 <- unique(model_data2)
+head(model_data2)
 
-colnames(model_data)  
+colnames(model_data2)  
 
 #counting NAs in all variables ending in _share
 na_count <- sapply(model_data, function(x) sum(is.na(x) & grepl("_share$", names(model_data))))
@@ -290,7 +348,8 @@ print(paste("Total number of rows in the dataset:", total_rows))
 
 #thats fine then with the NAs i think
 
-write.csv(model_data, file = "model_data_revision.csv", row.names = FALSE)
+colnames(model_data2)
+write.csv(model_data2, file = "model_data_revision2.csv", row.names = FALSE)
 
 
 

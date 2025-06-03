@@ -1,4 +1,4 @@
-\documentclass[preprint]{elsarticle} % Use elsarticle class (preprint option, no natbib options needed)
+\documentclass[preprint,12pt,authoryear]{elsarticle} % Use elsarticle class (preprint option, no natbib options needed)
 
 \usepackage[utf8]{inputenc} % Handle character encoding
 \usepackage{amsmath, amssymb} % Mathematical symbols and fonts
@@ -44,7 +44,7 @@
 
 \section{Abstract}
 \noindent
-This study examines the variation in campaign leaflet messages across constituencies in England within major political parties (Conservative, Labour, Liberal Democrats, Green, and UK Independence) during the 2010, 2015, 2017, and 2019 UK General Elections. Using leaflet data from OpenElections \citep{milazzo2020openelections}, text is scraped and analyzed with the Laver \& Garry Quanteda dictionary \citep{laverEstimatingPolicyPositions2000} to quantify frequencies of environmental or climate mentions by constituency, year, and political party. These frequencies are compared across constituencies within the same party and analyzed against weather data, previous election vote shares, and 2011 census data on income, age, and education levels. The study aims to identify factors most strongly associated with variations in environmental mentions in local political campaigns during UK general elections.
+This study examines the variation in campaign leaflet messages across constituencies in England within major political parties (Conservative, Labour, Liberal Democrats, Green, and UK Independence) during the 2010, 2015, 2017, and 2019 UK General Elections. Using leaflet data from OpenElections \citep{milazzo2020openelections}, text is scraped and analyzed with the Laver \& Garry Quanteda dictionary \citep{laverEstimatingPolicyPositions2000} to quantify count frequencies of environmental or climate mentions by constituency, year, and political party. These frequencies are compared across constituencies within the same party and analyzed against weather data, previous election vote shares, and 2011 census data on income, age, and education levels. The study aims to answer the following research question: how do local political campaigns vary throughout consituencies, even when local candidates belong to the same political party? Using continous outcome data containing counts of environmental words within constituency leaflets for each year and political party, the study aims to analyse the relationship of demographic details, past vote share results, and weather variance to the likelihood of local campaigners including more words about the environment in their campaign leaflets during general elections in England.
 
 \vspace{0.5cm}
 
@@ -64,10 +64,13 @@ Issue salience within party manifestos in England can be used to shed light on b
 
 This also relates to political geography, such that political behaviour is geographical and has implications on the voting habits as well as campaign messages. This has been studied within different regions in Scotland, finding that there is variation of campaign strategies within political parties depending on the location of the campaign \citep{pringleClassicsHumanGeography2003,agasosterPartyCohesionLocal2001}. Campaign strategies can pertain to both messages within campaigns as well as the number or frequency of campaigns in specific areas. Regarding campaign messaging, election leaflets are often looked at as they continue to serve as the most common way of campaigning. Variation has been found within these leaflets, specifically in the 2019 UK General Election, as mentions of specific issues or parties is not consistent throughout all constituencies in England  \citep{trummParliamentaryCandidatesTheir2023a}. Not only is there variance in mentioned issues and topics within leaflets, but also the distribution of these leaflets may not be uniform, as campaigning in constituencies may also vary due to campaign funding itself, with target seats emphasized and focused on more in campaign strategies \citep{pattieResourcingConstituencyCampaign2016}. This is in part influenced by the distribution of the electorate, as major political parties aim to reduce abstention and third parties aim to sway voters away from the main two parties \citep{nunezEffectsLocalCampaigning2021}.
 
-Issue salience generally has typically been focused on different parties as a whole. For example, Green parties have the highest environmental issue salience, social democratic parties tend to have higher environmental salience than conservative parties, and parties on the left have higher environmental salience overall because they are in more competition for votes with the Green Party \citep{carterGreeningMainstreamParty2013}. The tendency of parties to mention the environment is also influenced by public opinion \citep{carterPartyPoliticizationEnvironment2006}. There has been limited research, however, on issue salience within parties by constituency. Local campaigns do vary based on constituency in the issues that are mentioned, specifically with Conservatives and Liberal Democrats mentioning issues that are not stated in their overall manifestos \citep{harrisonNationalLocalParty2008}. This study by Harrison and McSweeney highlights the basis of this dissertation: there is variation in the issues mentioned within UK campaign leaflets. The first goal of my research is to add to this body of work by determining not only how the content varies between constituencies but how these content mentions vary in \textit{frequency} throughout UK constituencies.
+Issue salience generally has typically been focused on different parties as a whole. For example, Green parties have the highest environmental issue salience, social democratic parties tend to have higher environmental salience than conservative parties, and parties on the left have higher environmental salience overall because they are in more competition for votes with the Green Party \citep{carterGreeningMainstreamParty2013}. The tendency of parties to mention the environment is also influenced by public opinion \citep{carterPartyPoliticizationEnvironment2006}. There has been limited research, however, on issue salience within parties by constituency. Local campaigns do vary based on constituency in the issues that are mentioned, specifically with Conservatives and Liberal Democrats mentioning issues that are not stated in their overall manifestos \citep{harrisonNationalLocalParty2008}. This study by Harrison and McSweeney highlights the basis of this study: there is variation in the issues mentioned within UK campaign leaflets. The first goal of my research is to add to this body of work by determining not only how the content varies between constituencies but how these content mentions vary in \textit{frequency} throughout UK constituencies.
 
+As climate change is also a broadly discussed topic, with discussion being brought into the public as a whole, for example through tabloids \citep{farstadWhatExplainsVariation2018} \citet{birchElectoralBenefitsEnvironmental2023} also state that political parties' success may in part be determined by their positions on environmental topics specifically in response to extreme weather events such as flooding. This relationship between political party and weather or climate shifts is further seen in the other countries, such as the US where political orientations interact with weather events to influence public perceptions of climate change \cite{shaoSeeingBelievingExamination2016}. This points to the importance of looking at weather changes and extremity throughout the UK as a potential driving factor of differences in campaign strategies and issue salience.
 
-As the goal of campaigning is success in both the local campaign and on a national scale, party campaign success should be examined as well. While greater campaign efforts within a party typically result in better vote share, results are also impacted by the the strength of competitor parties as well as the incumbent party at the time of the election \citep{pattieIncumbentPartiesIncumbent2017a}. For this reason, it is important to understand which party constituencies typically vote for (and which issues they represent) in order to also understand how future politicians choose to campaign. Issue salience can be a useful indicator of campaign strategy as opposed to stance on the issue alone, as parties will mention issues more often if they expect to attract voters this way \citep{pogorelisIssueSalienceRegional2005}. While past literature on topic variance in campaigning has shown the mere presence of variance, it does not explain why this variance is present. Analysing correlating factors with issue salience variance may shed light on the rationale behind the strategies used by political parties in campaigns. The second goal of this dissertation is therefore to understand which factors are related to varying frequencies of topic mentions. 
+As the goal of campaigning is success in both the local campaign and on a national scale, party campaign success should be examined as well. While greater campaign efforts within a party typically result in better vote share, results are also impacted by the the strength of competitor parties as well as the incumbent party at the time of the election \citep{pattieIncumbentPartiesIncumbent2017a}. For this reason, it is important to understand which party constituencies typically vote for (and which issues they represent) in order to also understand how future politicians choose to campaign. Issue salience can be a useful indicator of campaign strategy as opposed to stance on the issue alone, as parties will mention issues more often if they expect to attract voters this way \citep{pogorelisIssueSalienceRegional2005}. While past literature on topic variance in campaigning has shown the mere presence of variance, it does not explain why this variance is present. Analysing correlating factors with issue salience variance may shed light on the rationale behind the strategies used by political parties in campaigns. 
+
+The goal of this study is to examine the variance in environmental word counts in campaign leaflets across constituencies in England during the 2010, 2015, 2017, and 2019 UK General Elections. The research question guiding this study is: \textit{How do local political campaigns vary throughout constituencies, even when local candidates belong to the same political party?} This will be answered by first scraping text from a large sample of campaign leaflets from various constituencies, parties, and election years. The words will then be sorted into the political topic they pertain to using the Laver \& Garry Quanteda dictionary \citep{laverEstimatingPolicyPositions2000}. Each leaflet packet will then contain a number of words that relate to the environment or climate change, providing data on campaigns in unique combinations of election year, party, and constituency. Section 5 will then analyse demographic factors, past vote share results, and weather variance in relation to the counts of environmental mentions. The expected outcome is that political party will play a large role in determining campaign content, but that the other included factors will also impact the campaigns.
 
 
 
@@ -108,31 +111,52 @@ In isolating other factors that might be related to environmental concern, many 
 
 This study aims to find the underlying mechanisms behind politician campaign strategies across constituencies. Although politician motivations are not included as a focus in this study, this research will instead provide information on which factors across constituencies have the ability to influence campaigns. The expected results are therefore that political party will not be the sole driving factor behind these differences, and instead the relationship may be much more complex. 
 	
+
+\subsubsection{Hypotheses}
+
+
+The studies discussed in section 3 demonstrate that there are many factors that may influence the variance in campaign strategies across constituencies that go beyond political party alone. For instance, do different parties react differently to weather events in their campaigning? Or, what is the effect of past vote share on the current campaign? It is expected that political party will play a large role in determining campaign content, but that the other included factors will also impact the campaigns. The following hypotheses are therefore proposed:
+
+
+\textbf{H1}: Political party will play a significant role in determining the frequency of environmental mentions in campaign leaflets, wit Green Party leaflets having the highest frequency of environmental mentions.
+
+\textbf{H2}: Constituencies with higher past vote share for the Consersative party in the previous election will have a lower frequency of environmental mentions in campaign leaflets, as they are in less direct competition with the Green Party
+
+\textbf{H3}: Constituencies with higher student counts and a lower median age will have a higher frequency of environmental mentions in campaign leaflets, as young and educated constituents are more likely to be concerned with environmental issues \citep{klinebergDemographicPredictorsEnvironmental1998}.
+
+\textbf{H4}: Constituencies with more rural populations will have a lower frequency of environmental mentions in campaign leaflets, as rural populations are less likely to be engage with environmental behaviour \citep{freudenburgRuralUrbanDifferencesEnvironmental1991}.
+
+Furthermore, it is expected that some of these predictions will hold true for within the analysis of some political parties but not for others. This would highlight that political parties campaign differently than one another and may pay attention to different constituency-level factors compared to their competitors.
+
+
 	
 	\newpage
 	
 
 	
-	\section{Data and Methods}
+\section{Data and Methods}
 
-The outcome data will be measured using leaflet data from OpenElections \citep{milazzo2020openelections}. This contains information from the 2010, 2015, 2017, and 2019 UK General Elections, with leaflets uploaded and coded based on constituency, party, issues mentioned, etc. The OpenElections data contains images of the leaflets as well as the metadata obtained by human coders. In order to enhance this dataset and separate it from other previously existing datasets, this project will also use text-scraping from image techniques. \citep{KerasocrKeras_ocrDocumentation,hoffstaetterPytesseractPythontesseractPython}. This process involves machine learning algorithms that detect text from an image and uses Optical Character Recognition (OCR) \citep{madhugiriExtractTextImages2022}. This will be supplemented with Pytesseract's text orientation function that detects both the language of the text as well as if the text is rotated \citep{rosebrockCorrectingTextOrientation2022} in order to be able to flip the images that are rotated either 90 or 270 degrees. As there were over 18,000 images scraped from the OpenElections website, this step will be crucial in order to ensure that the highest possible amount of text is preserved. 
+%add in justification and explanation of outcome data
 
-
-
-The text will then be sorted using the Laver Garry dictionary \citep{laverEstimatingPolicyPositions2000} with frequencies of each category of words counted for each constituency, party, and year. The words pertaining to the environment from this dictionary are divided into pro-environment words (ie., "car", "chemical", "ecolog", "emission", "green", "planet", and "product") as well as con-environment words (ie., "product"). In addition to these words, I will add a 'climate' subcategory consisting of the following words: "climate", "climate change", "global warming", "carbon emissions", and "greenhouse gases." These words were selected by reading through several leaflets and finding common words pertaining to the environment in order to best match the definition of environmentally related words to the human coders. Once the dictionary is used and the leaflets' text is divided into cleaned tokens, the environment (among the others) subcategories will be condensed together and the number of words matching in any of the subcategories will be counted and stored as a count variable in the dataset. This dataset therefore will not take into account the type of environmental mentions included in the leaflets, although this could be an avenue for further research. 
-
-Furthermore, as this project will use text scraped from leaflets rather than articles or speeches, the pre-processing of the text will follow a slightly different approach than standard text analysis projects. Rather than removing stop words and finding collocations, the data cleaning process will minimally process text data, primarily removing symbols and numbers. As the text is not necessarily in the correct order, this will be necessary to make sure that the analysis does not miss any important mentions. The text data obtained from this process will then be compared back to the metadata that was created by human coders but will also be used to examine issue salience and frequency of mentions beyond what can be done with human coders \citep{trummParliamentaryCandidatesTheir2023a}. The metadata for the leaflets only contains a binary measure of mentions: either the leaflet mentions the issue or it does not. Although this will be useful for ensuring accuracy of the keras-OCR model, it does little in capturing a full image of fine details in campaigns. 
- 
-
-
-After the text has been scraped, variation within each topic will be measured between constituencies as well as between each party and election year. Data from Meteostat \citep{MeteostatPyPI} will be used to collect weekly weather data from one year before the election date to the election date. This time period was chosen based on past literature suggesting that extreme weather events are most salient closer to the event \citep{viscontiEffectDifferentExtreme2024}.The data will then be converted into a single variation variable, through taking the standard deviation of the aggregate weather data as a single measure of how inconsistent the weather is at each location and to measure any major changes that might be salient to those living there. This is to obtain a general summary of how weather patterns vary across the UK in the year leading up to each election.
-
+%the outcome data is converted into a proportion of the environmental mentions over the total words 
 
 \paragraph{Controls}
 
-In addition to weather data, various demographic factors will be used as controls. Control data will be taken from the 2011 UK Census \citep{2011CensusOffice}, as this is the nearest census data to all of the elections in the dataset (2010, 2015, 2017, and 2019) as the 2021 census was not released yet. These controls will include median age, proportions of individuals with various educational attainment, and average income. In order to use educational attainment, the total number of students, regardless of employment status, will be summed to collect a total number of students within a constituency. As income data is not readily available numerically in the 2011 census, occupational rank will be used in its place. These overarching categories are: Higher managerial, administrative and professional occupations, Large employers and higher managerial and administrative occupations, Higher professional occupations, Lower managerial, administrative and professional occupations, Intermediate occupations, Small employers and own account workers, Lower supervisory and technical occupations, Semi-routine occupations, Routine occupations, Never worked, Long-term unemployed, and Full-time students. These are pooled across both males and females and are included as count variables in the dataset.
 
-Data on rural or urban classification of each constituency will also be used from the 2011 Rural Urban Classification of Westminster Parliamentary Constituencies \citep{RuralUrbanClassification}, focusing on the total rural/urban population count in each constituency, as well as voteshare data \citep{watsonGeneralElectionResults2024}. The voteshare data includes vote count and vote share from 1918 to 2019 but will be subset to include just data for the 2010 to 2019. This will be used as an indicator of the party competition for each election year within constituencies. As the constituency boundaries changed in 2010 \citep{cracknell2010GeneralElection2024}, the analysis will focus just on the party competition for each election as opposed to political leaning of the constituency in past elections as well. An analysis of changes in vote share for each of the parties in England could provide a useful avenue for future research on this topic. 
+
+%change this to show that its the simplified version of occupations base on this https://www.gov.uk/government/publications/understanding-a-workforces-socio-economic-background-for-change/simplifying-how-employers-measure-socio-economic-background-an-accompanying-report-to-new-guidance link
+
+%urban rural is now proportion
+%professional occupations also as a proportion of total population in constituency
+
+
+In order to measure the frequency of environmental mentions in campaign leaflets, it is first necessary to provide justification for the importance of using continuous outcome data. The frequency of environmental mentions in campaign leaflets will be measured by counting the number of words that are related to the environment or climate change in each leaflet. This will be done using the Laver \& Garry Quanteda dictionary \citep{laverEstimatingPolicyPositions2000}, which contains a list of words that are associated with various political topics, including the environment. The dictionary will be used to identify and count the number of environmental words in each leaflet, providing a continuous measure of environmental mentions. This allows for nuance in exactly how much each factor is influencing the campaign. A binary measure, which is currently what exists in the dataset created with manual human coding of leaflets, would provide only a measure of predicting if the campaigner mentions the environment \textit{at all}. Although this is useful, it misses important insights that might arise from why a constituency might, for example, mention the environment 1 time versus 10 times.
+
+Furthermore, the creation of this novel dataset will allow for comparison between counts of environmental mentions, compared to counts of other political topics. This allows for a complete analysis of the proportion of text dedicated to each political topic.
+
+In addition to weather data, various demographic factors were used as controls. Control data was taken from the 2011 UK Census \citep{2011CensusOffice}, as this is the nearest census data to all of the elections in the dataset (2010, 2015, 2017, and 2019) as the 2021 census was not released yet. These controls include median age, student counts, and counts of individuals in occupational statuses as outlined by the census forum. In order to analyse educational attainment, the total number of students, regardless of employment status, was summed to collect a total number of students within a constituency. As income data was not readily available numerically in the 2011 census, occupational rank was be used in its place. These overarching categories are: Higher managerial, administrative and professional occupations, Large employers and higher managerial and administrative occupations, Higher professional occupations, Lower managerial, administrative and professional occupations, Intermediate occupations, Small employers and own account workers, Lower supervisory and technical occupations, Semi-routine occupations, Routine occupations, Never worked, Long-term unemployed, and Full-time students. These are pooled across both males and females and are included as count variables in the dataset.
+
+Data on rural or urban classification of each constituency was also used from the 2011 Rural Urban Classification of Westminster Parliamentary Constituencies \citep{RuralUrbanClassification}, focusing on the total rural/urban population count in each constituency, as well as voteshare data \citep{watsonGeneralElectionResults2024}. The voteshare data includes vote count and vote share from 1918 to 2019 but will be subset to include just data for the 2010 to 2019. This will be used as an indicator of the party competition for each election year within constituencies. As the constituency boundaries changed in 2010 \citep{cracknell2010GeneralElection2024}, the analysis will focus just on the party competition for each election as opposed to political leaning of the constituency in past elections as well. An analysis of changes in vote share for each of the parties in England could provide a useful avenue for future research on this topic. 
 
 To ensure that the model is not picking up changes based on political party alone, a two-way fixed effect model with both election year and constituency as fixed effects will be run first. If the expected result is observed, this model should should very little significance of political party in capturing the overall variance, with most variance presenting in the constituency factors themselves.
 
@@ -158,14 +182,14 @@ The second accuracy score describes the frequency at which the metadata that was
 \begin{table}[!htbp]  
 	\caption{Accuracy of Text-Scraping Methods on Environmental Issues} 
 	\label{tab:envaccuracy} 
-	\begin{tabularx}{\textwidth}{Xccc}
-		\hline
-		Condition & Count & Total & Accuracy \\ 
-		\hline
-		Accuracy of OCR detection when 'Environment' is in metadata & 2417 & 2726 & 88.66\% \\
-		Accuracy of 'Environment' in metadata when OCR detects mentions & 2417 & 4162 & 58.07\% \\
-		\hline
-	\end{tabularx}
+	\begin{tabularx}{\textwidth}{lccc}
+			\hline
+			Condition & Count & Total & Accuracy \\ 
+			\hline
+			Accuracy of OCR detection when 'Environment' is in metadata & 2417 & 2726 & 88.66\% \\
+			Accuracy of 'Environment' in metadata when OCR detects mentions & 2417 & 4162 & 58.07\% \\
+			\hline
+		\end{tabularx}
 \end{table}
 
 
@@ -183,14 +207,14 @@ Both Table~\ref{tab:econaccuracy} and Table~\ref{tab:envaccuracy} demonstrate a 
 	\centering
 	\caption{Accuracy of Text-Scraping Methods on Economic Issues}
 	\label{tab:econaccuracy}
-	\begin{tabularx}{\textwidth}{Xccc}
-		\hline
-		Condition & Count & Total & Accuracy \\
-		\hline
-		Accuracy of OCR detection when 'Economy' is in metadata & 5322 & 5373 & 99.05\% \\
-		Accuracy of 'Economy' in metadata when OCR detects mentions & 5322 & 7073 & 75.24\% \\
-		\hline
-	\end{tabularx}
+	\begin{tabularx}{\textwidth}{lccc}
+			\hline
+			Condition & Count & Total & Accuracy \\
+			\hline
+			Accuracy of OCR detection when 'Economy' is in metadata & 5322 & 5373 & 99.05\% \\
+			Accuracy of 'Economy' in metadata when OCR detects mentions & 5322 & 7073 & 75.24\% \\
+			\hline
+		\end{tabularx}
 \end{table}
 
 
@@ -478,6 +502,7 @@ This project allows for large amounts of future research and highlights several 
 
 % Bibliography section (using the built-in 'elsarticle' system)
 \bibliographystyle{elsarticle-harv}  % You can use 'elsarticle-num', 'elsarticle-harv', etc.
+
 \bibliography{Dissertation2}  % Replace 'Dissertation2' with your actual .bib file name (no file extension)
 
 
@@ -514,7 +539,24 @@ This project allows for large amounts of future research and highlights several 
 	\label{fig:Appendix_Figure_3}
 \end{figure}
 
+\subsection{Methods}
 
+
+
+The outcome data was measured using leaflet data from OpenElections \citep{milazzo2020openelections}. This contained information from the 2010, 2015, 2017, and 2019 UK General Elections, with leaflets uploaded and coded based on constituency, party, issues mentioned, etc. The OpenElections data contained images of the leaflets as well as the metadata obtained by human coders. In order to enhance this dataset and separate it from other previously existing datasets, this study used text-scraping from image techniques. \citep{KerasocrKeras_ocrDocumentation,hoffstaetterPytesseractPythontesseractPython}. This process involved machine learning algorithms that detect text from an image and uses Optical Character Recognition (OCR) \citep{madhugiriExtractTextImages2022}. This was supplemented with Pytesseract's text orientation function that detects both the language of the text as well as if the text is rotated \citep{rosebrockCorrectingTextOrientation2022} in order to be able to flip the images that are rotated either 90 or 270 degrees. As there were over 18,000 images scraped from the OpenElections website, this step will be crucial in order to ensure that the highest possible amount of text is preserved. 
+
+
+
+The text was then sorted using the Laver Garry dictionary \citep{laverEstimatingPolicyPositions2000} with frequencies of each category of words counted for each constituency, party, and year. The words pertaining to the environment from this dictionary are divided into pro-environment words (ie., "car", "chemical", "ecolog", "emission", "green", "planet", and "product") as well as con-environment words (ie., "product"). In addition to these words, I added a 'climate' subcategory consisting of the following words: "climate", "climate change", "global warming", "carbon emissions", and "greenhouse gases." These words were selected by reading through several leaflets and finding common words pertaining to the environment in order to best match the definition of environmentally related words to the human coders. Once the dictionary was used and the leaflets' text is divided into cleaned tokens, the environment (among the others) subcategories were condensed together and the number of words matching in any of the subcategories were counted and stored as a count variable in the dataset. This dataset therefore does not into account the type of environmental mentions included in the leaflets, although this could be an avenue for further research. 
+
+Furthermore, as this study used text scraped from leaflets rather than articles or speeches, the pre-processing of the text followed a slightly different approach than standard text analysis projects. Rather than removing stop words and finding collocations, the data cleaning process  minimally processed the text data, primarily removing symbols and numbers. As the text was not necessarily in the correct order, this was necessary to make sure that the analysis doedids not miss any important mentions. The text data obtained from this process was then be compared back to the metadata that was created by human coders but was also used to examine issue salience and frequency of mentions beyond what can be done with human coders \citep{trummParliamentaryCandidatesTheir2023a}. The metadata for the leaflets only contained a binary measure of mentions: either the leaflet mentions the issue or it does not. Although this was useful for ensuring accuracy of the keras-OCR model, it does little in capturing a full image of fine details in campaigns. 
+ 
+
+
+After the text was scraped, variation within each topic was measured between constituencies as well as between each party and election year. Data from Meteostat \citep{MeteostatPyPI} was used to collect weekly weather data from one year before the election date to the election date. This time period was chosen based on past literature suggesting that extreme weather events are most salient closer to the event \citep{viscontiEffectDifferentExtreme2024}.The data was then converted into a single variation variable, through taking the standard deviation of the aggregate weather data as a single measure of how inconsistent the weather is at each location and to measure any major changes that might be salient to those living there. This was to obtain a general summary of how weather patterns vary across the UK in the year leading up to each election.
+
+
+\subsection{OCR and Dictionary Methods}
 
 
 

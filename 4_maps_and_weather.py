@@ -11,8 +11,12 @@ Created on Sat Jul  6 16:43:01 2024
 #output of this file is data_withweather.csv
 #this is the file that will be used for the maps and the analysis   
 
+# note - this file has been edited to fix the outcome variable
+#was getting no variation across year and constituency because the mean was being calculated across all years and constituencies
 
+#fixed this file again on July 6, 2024 to add a percentage of environment words out of total length of combined text
 
+#%% imports and setup
 #conda install ipykernel  
 #do this for every env to be able to run in interactive cell
 #%%setup
@@ -158,102 +162,89 @@ print(gdf['CONSTITUENCY'].unique())
 # Merge the dataframes
 merged_gdf = gdf.merge(df, left_on='CONSTITUENCY', right_on='constituency')
 
-# Aggregate data to get the average environmental mentions per constituency
-environment_mean = merged_gdf.groupby('constituency')['environment'].mean().reset_index()
-environment_mean.columns = ['constituency', 'mean_environmental_mentions']
+merged_gdf.columns
+#june 2 - got rid of mean_env_mentions bc we want variance across constituencies
 
-# Merge the aggregated data back into merged_gdf
-merged_gdf = merged_gdf.merge(environment_mean, on='constituency', how='left')
+import pandas as pd
 
-# Create a new DataFrame without the 'environment' column
-new_df = merged_gdf.drop(columns=['environment'])
+grouping_keys = ['constituency', 'Election', 'Party']
 
-# Drop duplicate rows
-new_df = new_df.drop_duplicates()
+# Step 1: Calculate mean by grouping
+mean_env = merged_gdf.groupby(grouping_keys)['environment'].transform('mean')
+
+# Step 2: Add as a new column (no merge needed!)
+merged_gdf['mean_environmental_mentions'] = mean_env
+
+
+
+merged_gdf.columns
+# Calculate percentage of environment words out of total word count
+# Assumes columns: 'environment' (count of env words), 'Word.Count' (total words)
+# Calculate percentage of environment words out of total length of combined text
+# Assumes columns: 'environment' (count of env words), 'Combined.Text' (full text)
+merged_gdf['environment_word_pct'] = merged_gdf['environment'] / merged_gdf['CombinedText'].str.len()
+
+# Step 3: If you want a separate variable
+new_df = merged_gdf.copy()
+
 new_df.columns
+new_df
+
+#%% plots for report --important part
 
 
-# %% plots for report --important part
+#  %% plots for report --important part
 
 
-# Manually set vmin and vmax to focus on a specific range of data
-vmin = 0  # Minimum value for color scale
-vmax = new_df['mean_environmental_mentions'].quantile(0.90)  # Focus on the lower 90% of data
+output_folder = 'C:/Users/kburg/OneDrive/Documents/GitHub/MSc_ASDS_Dissertation_Burg/tex_files_withallimagesandbib/plots'
+# Ensure your output folder exists
+os.makedirs(output_folder, exist_ok=True)
 
-fig, ax = plt.subplots(1, 1, figsize=(15, 10))
-
-# Plot the constituencies, shading by mean_environmental_mentions
-new_df.plot(column='mean_environmental_mentions', 
-                cmap='YlGn',  
-                linewidth=0.8, 
-                edgecolor='0.8', 
-                ax=ax, 
-                legend=True,
-                vmin=vmin,
-                vmax=vmax,
-                missing_kwds={'color': 'red', 'label': 'No Data', 'edgecolor': 'black'})
-
-
-
-ax.set_axis_off()
-plt.show()
-
-#for saving plots:
-
-#output_folder = './plots'
-#os.makedirs(output_folder, exist_ok=True)  # Create the folder if it doesn't exist
-
-#output_file = os.path.join(output_folder, 'Overall_Environmental_Mentions.png')
-#plt.savefig(output_file, dpi=300, bbox_inches='tight')
-
-# Close the figure to prevent memory issues
-#plt.close(fig)
+#create unique
+unique_parties = new_df['Party'].unique()       
+unique_elections = new_df['Election'].unique()
 
 
 # Loop through each combination of Party and Election
-#with loop for saving images - cut out if not necesssary - uses output_file above
 for party in unique_parties:
     for election in unique_elections:
-        # Filter the data based on Party and Election
+        # Filter the data
         subset_df = new_df[(new_df['Party'] == party) & (new_df['Election'] == election)]
-        
-        # Remove spaces from the party and election names for the output file name
+
+        if subset_df.empty:
+            print(f"Skipping empty subset for {party} - {election}")
+            continue
+
+        # Remove spaces for filenames
         party_no_spaces = party.replace(' ', '')
         election_no_spaces = election.replace(' ', '')
 
-        # Plotting the data
-        fig, ax = plt.subplots(1, 1, figsize=(15, 10))  # Ensure the size is consistent
+        # Set vmin/vmax based on subset if desired
+        vmin = 0
+        vmax = subset_df['mean_environmental_mentions'].quantile(0.90)
 
-        # Plot the constituencies, shading by mean_environmental_mentions in grayscale
-        im = subset_df.plot(column='mean_environmental_mentions', 
-                            cmap='Greys',  # Use grayscale color map
-                            linewidth=0.8, 
-                            edgecolor='0.8', 
-                            ax=ax, 
-                            legend=True,
-                            missing_kwds={'color': 'lightgrey', 'label': 'No Data', 'edgecolor': 'black'})
+        # Create plot
+        fig, ax = plt.subplots(1, 1, figsize=(15, 10))
+        subset_df.plot(
+            column='mean_environmental_mentions',
+            cmap='Greys',
+            linewidth=0.8,
+            edgecolor='0.8',
+            ax=ax,
+            legend=True,
+            vmin=vmin,
+            vmax=vmax,
+            missing_kwds={'color': 'lightgrey', 'label': 'No Data', 'edgecolor': 'black'}
+        )
 
-        # Get the colorbar and set its properties to black and white
-        cbar = im.get_figure().get_axes()[1]  # Get the colorbar axis
-        cbar.set_facecolor('white')  # Set the background color of the colorbar
-        for label in cbar.get_xticklabels() + cbar.get_yticklabels():
-            label.set_color('black')  # Set the color of colorbar labels to black
-        
-        # Customize the plot
+        ax.set_title(f"{party} - {election}", fontsize=16)
         ax.set_axis_off()
 
-        # Save the plot with spaces in party and election names removed
-        output_file = os.path.join(output_folder, f'{party_no_spaces}_{election_no_spaces}_Environmental_Mentions.png')
+        # Save the plot
+        output_file = os.path.join(output_folder, f"{party_no_spaces}_{election_no_spaces}_Environmental_Mentions.png")
         plt.savefig(output_file, dpi=300, bbox_inches='tight', pad_inches=0.1)
-      #  plt.savefig(output_file, dpi=300, bbox_inches='tight')
-        print(f'Saved plot: {output_file}')
-
-        # Close the figure to prevent memory issues
         plt.close(fig)
-
-print("All plots have been saved successfully.")
-
-
+        print(f"Saved plot: {output_file}")
 
 #%% working with meteostat 
 

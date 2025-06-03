@@ -2,6 +2,8 @@
 #SETUP
 ####
 
+#fixed with new data, now models are fine
+
 
 getwd()
 setwd('C:/Users/kburg/OneDrive/Documents/GitHub/MSc_ASDS_Dissertation_Burg')
@@ -17,19 +19,20 @@ library(stargazer)
 library(tidyverse)
 library(RColorBrewer) 
 library(plm)
-
+#install.packages("lfe")
+library(lfe)  
 #import data
 
-df <- read.csv("CSVandSHPfiles/model_data_revision.csv")
+df <- read.csv("CSVandSHPfiles/model_data_revision2.csv")
 raw_dat <- read.csv("CSVandSHPfiles/sorted_full_df_july4_5.csv")
-test <- read.csv('CSVandSHPfiles/final_merged_clean_230425.csv')
+#test <- read.csv('CSVandSHPfiles/final_merged_clean_230425.csv')
 
 final_merged = df
 
 #checking names
 colnames(final_merged)
 colnames(raw_dat)
-colnames(test)
+#colnames(test)
 
 #conversion to factor variables
 final_merged$Party <- as.factor(final_merged$Party)
@@ -44,62 +47,159 @@ levels(final_merged$Party)
 
 head(final_merged)
 
+
 #mltiply all columns ending with '_share' by 100 to make interpretation easier
 final_merged <- final_merged %>%
   mutate(across(ends_with("_share"), ~ . * 100))
 
-#setting predictors
+
+colnames(final_merged)
+
+final_merged <- final_merged[!duplicated(final_merged), ]
+
+
+# Check range of outcome variable
+range(final_merged$environment_word_pct)
+
+# Define predictors WITHOUT constituency, since it is used only for indexing in plm
 predictors <- c("Party", "election", "Median_Age", 
-                "Total_Rural_Population", "Total_Urban_Population", 
-                "Higher_Managerial", "Lower_Managerial", "Intermediate_Occupations", 
-                "Small_Employers", "Lower_Supervisory", "Semi_Routine", 
-                "Routine_Occupations", "Never_Worked", 
-                "Long_Term_Unemployed", "Total_Students_Count",
+                "Rural_Prop", "Urban_Prop", 
+                "Working_Class_Prop", "Intermediate_Prop", "Professional_Prop", 
+                "Total_Students_Count",
                 "overall_weather_std",
                 "lib_share",
                 "lab_share",                  
                 "oth_share",
-                "con_share"
-)
+                "con_share")
 
-#setting outcome
-outcome <- "mean_environmental_mentions"
+# Define outcome
+outcome <- "environment_word_pct"
 
-#running model
-regression_data <- final_merged %>%
-  select(all_of(predictors), all_of(outcome))
+# ----------------------
+# Create regression data for Model 1 & 2 (NO constituency)
+regression_data_no_constituency <- final_merged %>%
+  select(all_of(predictors), all_of(outcome)) %>%
+  distinct()  # remove exact duplicates
 
-#perform regression
-model <- lm(as.formula(paste(outcome, "~ .")), data = regression_data)
-
+# ----------------------
+# Model 1: OLS (no fixed effects)
+model <- lm(as.formula(paste(outcome, "~ .")), data = regression_data_no_constituency)
 summary(model)
 
-# Fixed Effects Model with only time (election years) fixed effects
+# ----------------------
+# Model 2: Fixed Effects on election year only
 model_time_fixed <- plm(
-  mean_environmental_mentions ~ Party + Median_Age + Total_Rural_Population + Total_Urban_Population + 
-  Higher_Managerial + Lower_Managerial + Intermediate_Occupations + Small_Employers + Lower_Supervisory + 
-  Semi_Routine + Routine_Occupations + Never_Worked + Long_Term_Unemployed + Total_Students_Count + 
-  overall_weather_std + lib_share + lab_share + oth_share + con_share,
-  data = final_merged,
-  index = c("election"), # Panel data index, with election years
-  model = "within", # 'within' is fixed effects
-  effect = "time"  # This specifies we are controlling for time (election year) fixed effects
+  environment_word_pct ~ Party + Median_Age + Rural_Prop + Urban_Prop + 
+    Working_Class_Prop + Intermediate_Prop + Professional_Prop + 
+    Total_Students_Count + overall_weather_std + 
+    lib_share + lab_share + oth_share + con_share,
+  data = regression_data_no_constituency,
+  index = c("election"),
+  model = "within",
+  effect = "time"
 )
-
-# Summary of the model
 summary(model_time_fixed)
 
-# Two-way Fixed Effects Model (both election year and constituency)
-model_two_way_fixed <- plm(
-  mean_environmental_mentions ~ Party, 
-  data = final_merged,
-  index = c("election", "constituency"), # Panel data index, with both election years and constituencies
-  model = "within", # 'within' is fixed effects
-  effect = "twoways"  # Control for both time (election years) and constituency fixed effects
+# ----------------------
+# Model 3: Two-way Fixed Effects (election + constituency)
+
+
+model_two_way_fixed <- felm(
+  environment_word_pct ~ Party |
+    election + constituency, # fixed effects here
+  data = regression_data
 )
 
-# Summary of the model
 summary(model_two_way_fixed)
+
+
+
+# Create a list to store models for each party
+party_models <- list()
+
+# Loop through each party and fit a fixed effects model using regression_data_no_constituency
+for (party in levels(regression_data_no_constituency$Party)) {
+  # Filter data for the current party
+  party_data <- regression_data_no_constituency %>% filter(Party == party)
+  
+  # Fit the fixed effects model with time (election year) fixed effects
+  model_party <- plm(
+    environment_word_pct ~ Median_Age + Rural_Prop + Urban_Prop + 
+      Working_Class_Prop + Intermediate_Prop + Professional_Prop + 
+      Total_Students_Count + overall_weather_std + lab_share +
+      oth_share + con_share,
+    data = party_data,
+    index = c("election"),
+    model = "within",
+    effect = "time"
+  )
+  
+  # Store the model in the list with the party name as the key
+  party_models[[party]] <- model_party
+}
+
+# Print summaries of the models for each party
+for (party in names(party_models)) {
+  cat("Model for Party:", party, "\n")
+  print(summary(party_models[[party]]))
+  cat("\n")
+}
+
+
+#stargazer
+
+#stargazer for the models for each party
+stargazer(party_models, 
+          type = "latex",  # Change to "latex" or "html" as needed
+          title = "Fixed Effects Models for Each Party with Election-Year Controls",
+          omit.stat = c("f", "ser"),  # Omit F-statistic and residual std. error
+          digits = 3,
+          no.space = TRUE,
+          column.labels = names(party_models),  # Use party names as column labels
+          dep.var.labels = "Mean Environmental Mentions")  # Label for the dependent variable
+#stargazer for the main model
+# Create the LaTeX table for the main model
+stargazer(model, 
+          type = "latex",  # Change to "latex" or "html" as needed
+          title = "Main Model with Election-Year Controls",
+          omit.stat = c("f", "ser"),  # Omit F-statistic and residual std. error
+          digits = 3,
+          no.space = TRUE,
+          dep.var.labels = "Mean Environmental Mentions")  # Label for the dependent variable
+#stargazer for the two-way fixed effects model
+# Create the LaTeX table for the two-way fixed effects model
+stargazer(model_two_way_fixed, 
+          type = "latex",  # Change to "latex" or "html" as needed
+          title = "Two-Way Fixed Effects Model with Election-Year and Constituency Controls",
+          omit.stat = c("f", "ser"),  # Omit F-statistic and residual std. error
+          digits = 3,
+          no.space = TRUE,
+          dep.var.labels = "Mean Environmental Mentions")  # Label for the dependent variable
+#stargazer for the model with only time fixed effects
+# Create the LaTeX table for the model with only time fixed effects
+stargazer(model_time_fixed, 
+          type = "latex",  # Change to "latex" or "html" as needed
+          title = "Fixed Effects Model with Election-Year Controls (Time Only)",
+          omit.stat = c("f", "ser"),  # Omit F-statistic and residual std. error
+          digits = 3,
+          no.space = TRUE,
+          dep.var.labels = "Mean Environmental Mentions")  # Label for the dependent variable
+#stargazer for the model with two-way fixed effects
+# Create the LaTeX table for the model with two-way fixed effects
+stargazer(model_two_way_fixed, 
+          type = "latex",  # Change to "latex" or "html" as needed
+          title = "Fixed Effects Model with Election-Year Controls (Time and Constituency)",
+          omit.stat = c("f", "ser"),  # Omit F-statistic and residual std. error
+          digits = 3,
+          no.space = TRUE,
+          dep.var.labels = "Mean Environmental Mentions")  # Label for the dependent variable
+
+
+
+
+
+#stargazer things
+
 
 stargazer(model)
 
@@ -342,3 +442,5 @@ ggplot(total_mentions_table, aes(x = Party, y = total_mentions, fill = Election)
 output_path <- "tex_files_withallimagesandbib/plots/total_mentions_by_party_year_bw.png"
 ggsave(output_path, width = 12, height = 8, dpi = 300)
 cat("Saved plot to:", output_path, "\n")
+
+
