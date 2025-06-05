@@ -1,4 +1,4 @@
-\begin{thebibliography}{60}
+\begin{thebibliography}{62}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -39,11 +39,15 @@
 \newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{22},
   \bibinfo{pages}{387--407}.
 \newblock \DOIprefix\doi{10.1177/0013916590223004}.
-%Type = Techreport
-\bibitem[{Bines(2024)}]{binesRoutineManualWorkers2024}
-\bibinfo{author}{Bines, N.}, \bibinfo{year}{2024}.
-\newblock \bibinfo{title}{Routine and {{Manual Workers Profile}}}.
-\newblock \bibinfo{type}{Technical Report}.
+%Type = Article
+\bibitem[{Birch(2023)}]{birchElectoralBenefitsEnvironmental2023}
+\bibinfo{author}{Birch, S.}, \bibinfo{year}{2023}.
+\newblock \bibinfo{title}{The electoral benefits of environmental
+  position-taking: {{Floods}} and electoral outcomes in {{England}}
+  2010--2019}.
+\newblock \bibinfo{journal}{European Journal of Political Research}
+  \bibinfo{volume}{62}, \bibinfo{pages}{95--117}.
+\newblock \DOIprefix\doi{10.1111/1475-6765.12522}.
 %Type = Article
 \bibitem[{Bogner and Wiseman(1997)}]{bognerEnvironmentalPerceptionRural1997}
 \bibinfo{author}{Bogner, F.X.}, \bibinfo{author}{Wiseman, M.},
@@ -53,26 +57,6 @@
 \newblock \bibinfo{journal}{Journal of Environmental Psychology}
   \bibinfo{volume}{17}, \bibinfo{pages}{111--122}.
 \newblock \DOIprefix\doi{10.1006/jevp.1997.0046}.
-%Type = Article
-\bibitem[{Bright et~al.(2020)Bright, Hale, Ganesh, Bulovsky, Margetts and
-  Howard}]{brightDoesCampaigningSocial2020}
-\bibinfo{author}{Bright, J.}, \bibinfo{author}{Hale, S.},
-  \bibinfo{author}{Ganesh, B.}, \bibinfo{author}{Bulovsky, A.},
-  \bibinfo{author}{Margetts, H.}, \bibinfo{author}{Howard, P.},
-  \bibinfo{year}{2020}.
-\newblock \bibinfo{title}{Does {{Campaigning}} on {{Social Media Make}} a
-  {{Difference}}? {{Evidence From Candidate Use}} of {{Twitter During}} the
-  2015 and 2017 {{U}}.{{K}}. {{Elections}}}.
-\newblock \bibinfo{journal}{Communication Research} \bibinfo{volume}{47},
-  \bibinfo{pages}{988--1009}.
-\newblock \DOIprefix\doi{10.1177/0093650219872394}.
-%Type = Article
-\bibitem[{Burns(2020)}]{burnsWillBrexitDegrade2020}
-\bibinfo{author}{Burns, C.}, \bibinfo{year}{2020}.
-\newblock \bibinfo{title}{Will {{Brexit Degrade UK Environmental Policy}}?}
-\newblock \bibinfo{journal}{Current History} \bibinfo{volume}{119},
-  \bibinfo{pages}{101--106}.
-\newblock \href{http://arxiv.org/abs/48614518}{{\tt arXiv:48614518}}.
 %Type = Article
 \bibitem[{Buttel(1979)}]{buttelAgeEnvironmentalConcern1979}
 \bibinfo{author}{Buttel, F.H.}, \bibinfo{year}{1979}.
@@ -221,6 +205,13 @@
 \newblock \bibinfo{journal}{Weather, Climate, and Society} \bibinfo{volume}{4},
   \bibinfo{pages}{132--144}.
 \newblock \DOIprefix\doi{10.1175/WCAS-D-11-00044.1}.
+%Type = Misc
+\bibitem[{{GOV.UK}()}]{SimplifyingHowEmployers}
+\bibinfo{author}{{GOV.UK}}, .
+\newblock \bibinfo{title}{Simplifying how employers measure socio-economic
+  background: {{An}} accompanying report to new guidance}.
+\newblock
+  \bibinfo{howpublished}{https://www.gov.uk/government/publications/understanding-a-workforces-socio-economic-background-for-change/simplifying-how-employers-measure-socio-economic-background-an-accompanying-report-to-new-guidance}.
 %Type = Article
 \bibitem[{Harrison and McSweeney(2008)}]{harrisonNationalLocalParty2008}
 \bibinfo{author}{Harrison, L.}, \bibinfo{author}{McSweeney, D.},
@@ -343,6 +334,23 @@ KerasOCR, .
   \bibinfo{volume}{44}, \bibinfo{pages}{619--634}.
 \newblock \DOIprefix\doi{10.2307/2669268},
   \href{http://arxiv.org/abs/2669268}{{\tt arXiv:2669268}}.
+%Type = Article
+\bibitem[{Le~Roux et~al.(2008)Le~Roux, Rouanet, Savage and Warde}]{le2008class}
+\bibinfo{author}{Le~Roux, B.}, \bibinfo{author}{Rouanet, H.},
+  \bibinfo{author}{Savage, M.}, \bibinfo{author}{Warde, A.},
+  \bibinfo{year}{2008}.
+\newblock \bibinfo{title}{Class and cultural division in the uk}.
+\newblock \bibinfo{journal}{Sociology} \bibinfo{volume}{42},
+  \bibinfo{pages}{1049--1071}.
+%Type = Article
+\bibitem[{Liu et~al.(2024)Liu, Shryane and Elliot}]{liu2024personal}
+\bibinfo{author}{Liu, T.}, \bibinfo{author}{Shryane, N.},
+  \bibinfo{author}{Elliot, M.}, \bibinfo{year}{2024}.
+\newblock \bibinfo{title}{Is personal income associated with attitudes towards
+  climate change risk? a moderated mediation analysis for the uk from 2009 to
+  2020}.
+\newblock \bibinfo{journal}{Sustainable Development} \bibinfo{volume}{32},
+  \bibinfo{pages}{5913--5928}.
 %Type = Article
 \bibitem[{Lo and Jim(2015)}]{loComeRainShine2015}
 \bibinfo{author}{Lo, A.Y.}, \bibinfo{author}{Jim, C.Y.}, \bibinfo{year}{2015}.
@@ -491,6 +499,15 @@ KerasOCR, .
 \newblock \bibinfo{journal}{Environment and Behavior} \bibinfo{volume}{21},
   \bibinfo{pages}{57--81}.
 \newblock \DOIprefix\doi{10.1177/0013916589211004}.
+%Type = Article
+\bibitem[{Shao and Goidel(2016)}]{shaoSeeingBelievingExamination2016}
+\bibinfo{author}{Shao, W.}, \bibinfo{author}{Goidel, K.}, \bibinfo{year}{2016}.
+\newblock \bibinfo{title}{Seeing is {{Believing}}? {{An Examination}} of
+  {{Perceptions}} of {{Local Weather Conditions}} and {{Climate Change Among
+  Residents}} in the {{U}}.{{S}}. {{Gulf Coast}}}.
+\newblock \bibinfo{journal}{Risk Analysis} \bibinfo{volume}{36},
+  \bibinfo{pages}{2136--2157}.
+\newblock \DOIprefix\doi{10.1111/risa.12571}.
 %Type = Article
 \bibitem[{Sisco(2021)}]{siscoEffectsWeatherExperiences2021}
 \bibinfo{author}{Sisco, M.R.}, \bibinfo{year}{2021}.

@@ -3,7 +3,7 @@
 ####
 
 #fixed with new data, now models are fine
-
+#fixed the plots now
 
 getwd()
 setwd('C:/Users/kburg/OneDrive/Documents/GitHub/MSc_ASDS_Dissertation_Burg')
@@ -22,6 +22,7 @@ library(plm)
 #install.packages("lfe")
 library(lfe)  
 #import data
+
 
 df <- read.csv("CSVandSHPfiles/model_data_revision2.csv")
 raw_dat <- read.csv("CSVandSHPfiles/sorted_full_df_july4_5.csv")
@@ -61,11 +62,25 @@ final_merged <- final_merged[!duplicated(final_merged), ]
 # Check range of outcome variable
 range(final_merged$environment_word_pct)
 
+# Check variance in Party and vote shares
+party_variance <- final_merged %>%
+  group_by(Party) %>%
+  summarise(Variance = var(environment_word_pct, na.rm = TRUE))
+
+vote_share_variance <- final_merged %>%
+  summarise(across(ends_with("_share"), var, na.rm = TRUE))
+
+print("Variance by Party:")
+print(party_variance)
+
+print("Variance in Vote Shares:")
+print(vote_share_variance)
+
 # Define predictors WITHOUT constituency, since it is used only for indexing in plm
 predictors <- c("Party", "election", "Median_Age", 
                 "Rural_Prop", "Urban_Prop", 
                 "Working_Class_Prop", "Intermediate_Prop", "Professional_Prop", 
-                "Total_Students_Count",
+                "Total_Student_Pct",
                 "overall_weather_std",
                 "lib_share",
                 "lab_share",                  
@@ -86,12 +101,13 @@ regression_data_no_constituency <- final_merged %>%
 model <- lm(as.formula(paste(outcome, "~ .")), data = regression_data_no_constituency)
 summary(model)
 
+
 # ----------------------
 # Model 2: Fixed Effects on election year only
 model_time_fixed <- plm(
   environment_word_pct ~ Party + Median_Age + Rural_Prop + Urban_Prop + 
     Working_Class_Prop + Intermediate_Prop + Professional_Prop + 
-    Total_Students_Count + overall_weather_std + 
+    Total_Student_Pct + overall_weather_std + 
     lib_share + lab_share + oth_share + con_share,
   data = regression_data_no_constituency,
   index = c("election"),
@@ -103,6 +119,11 @@ summary(model_time_fixed)
 # ----------------------
 # Model 3: Two-way Fixed Effects (election + constituency)
 
+
+# Define regression_data including constituency
+regression_data <- final_merged %>%
+  select(all_of(predictors), all_of(outcome), constituency) %>%
+  distinct()  # remove exact duplicates
 
 model_two_way_fixed <- felm(
   environment_word_pct ~ Party |
@@ -126,7 +147,7 @@ for (party in levels(regression_data_no_constituency$Party)) {
   model_party <- plm(
     environment_word_pct ~ Median_Age + Rural_Prop + Urban_Prop + 
       Working_Class_Prop + Intermediate_Prop + Professional_Prop + 
-      Total_Students_Count + overall_weather_std + lab_share +
+      Total_Student_Pct + overall_weather_std + lab_share + lib_share +
       oth_share + con_share,
     data = party_data,
     index = c("election"),
@@ -198,7 +219,7 @@ stargazer(model_two_way_fixed,
 
 
 
-#stargazer things
+#stargazer things for simple models
 
 
 stargazer(model)
@@ -223,15 +244,32 @@ stargazer(model_two_way_fixed,
 
 colnames(raw_dat)
 
-# Calculate the total number of leaflets by year
+
+
+# ----- breakdown of leaflets by party and year -----
+
+#making a table of the combined text sorted by party and year and constit
+
+
+leaflet_summary <- raw_dat %>%
+  group_by(Election, Party) %>%
+  summarise(Total_Leaflets = sum(environment), .groups = 'drop')  
+
+# Print the summary table
+print(leaflet_summary)
+
+
+#now recalculate these columns below
+# Calculate total leaflets by year
 total_leaflets_by_year <- raw_dat %>%
   group_by(Election) %>%
   summarise(Total_Leaflets = sum(environment), .groups = 'drop')
-
-# Calculate the number of leaflets by party for each year
+# Calculate leaflets by party and year
 leaflets_by_party_and_year <- raw_dat %>%
   group_by(Election, Party) %>%
   summarise(Total_Leaflets = sum(environment), .groups = 'drop')
+
+
 
 # Check data frames
 print(total_leaflets_by_year)
@@ -251,196 +289,131 @@ stargazer(leaflets_by_party_and_year,
           summary = FALSE, 
           out = "tex_files_withallimagesandbib/leaflets_by_party_and_year.tex")
 
-#other descriptive stats
+# sorted desc stats by env as a total percentage of the text
 
-# Count occurrences of each year
-count_by_year <- raw_dat %>%
+
+count_by_year_env <- raw_dat %>%
+  filter(environment > 0) %>%
   group_by(Election) %>%
   summarise(Count = n(), .groups = 'drop')
-
-# Count occurrences of each party by year
-count_by_party_and_year <- raw_dat %>%
+# Count occurrences of each party by year for environmental mentions
+count_by_party_and_year_env <- raw_dat %>%
+  filter(environment > 0) %>%
   group_by(Election, Party) %>%
   summarise(Count = n(), .groups = 'drop')
 
-# Output LaTeX table for count by year
-stargazer(count_by_year, 
-          type = "latex", 
-          title = "Count of Observations by Year", 
-          summary = FALSE, 
-          out = "tex_files_withallimagesandbib/count_by_year.tex")
+count_by_year_env
+count_by_party_and_year_env
 
-# Output LaTeX table for count by party and year
-stargazer(count_by_party_and_year, 
-          type = "latex", 
-          title = "Count of Observations by Party and Year", 
-          summary = FALSE, 
-          out = "tex_files_withallimagesandbib/count_by_party_and_year.tex")
 
 # Columns representing issues
 issue_columns <- c("culture", "economy", "environment", "groups", "institutions", "law_and_order", "rural", "urban", "values")
 
-# Summarize total mentions for each issue by party and year
-issue_mentions <- raw_dat %>%
+
+#counting percentages of text for each category using raw data lenght to do so
+
+#add the issue percent by year variable
+issue_percent_by_year_party <- raw_dat %>%
   group_by(Election, Party) %>%
-  summarise(across(all_of(issue_columns), sum, .names = "total_{.col}"), .groups = 'drop')
+  summarise(across(all_of(issue_columns), ~ sum(.x, na.rm = TRUE) / sum(environment, na.rm = TRUE) * 100, .names = "percent_{col}"), .groups = 'drop')  
 
-# Calculate the total mentions for all issues combined for each party and year
-issue_mentions <- issue_mentions %>%
-  mutate(total_mentions = rowSums(across(starts_with("total_")), na.rm = TRUE))
 
-# Calculate the percentage of mentions for each issue
-issue_mentions <- issue_mentions %>%
-  mutate(across(starts_with("total_"), ~ . / total_mentions * 100, .names = "percent_{.col}"))
 
-# Remove the percent_total_mentions column if it exists
-if ("percent_total_mentions" %in% colnames(issue_mentions)) {
-  issue_mentions <- issue_mentions %>%
-    select(-percent_total_mentions)
-}
+issue_percent_table <- issue_percent_by_year_party %>%
+  mutate(total = rowSums(across(starts_with("percent_")), na.rm = TRUE)) %>%
+  mutate(across(starts_with("percent_"), ~ . / total * 100)) %>%
+  select(-total)
 
-# Identify the most mentioned issue by percentage for each party and year
-most_mentioned_issue <- issue_mentions %>%
-  rowwise() %>%
-  mutate(most_mentioned = names(which.max(c_across(starts_with("percent_total_"))))) %>%
-  ungroup()
+# Reshape for stargazer or kable
+issue_percent_table_long <- issue_percent_table %>%
+  pivot_longer(cols = starts_with("percent_"), names_to = "Issue", values_to = "Percent") %>%
+  mutate(Issue = gsub("percent_", "", Issue))
 
-# Correcting the assignment of most_mentioned
-most_mentioned_issue <- issue_mentions %>%
-  rowwise() %>%
-  mutate(most_mentioned = issue_columns[which.max(c_across(starts_with("percent_total_")))]) %>%
-  ungroup()
+# Wide format for table
+issue_percent_table_wide <- issue_percent_table_long %>%
+  pivot_wider(names_from = Issue, values_from = Percent)
 
-# Select relevant columns
-most_mentioned_issue <- most_mentioned_issue %>%
-  select(Election, Party, most_mentioned)
+# Output as LaTeX table for appendix
+stargazer(issue_percent_table_wide, type = "latex", summary = FALSE,
+          title = "Percentage of Leaflet Text by Issue, Party, and Year (Sums to 100%)",
+          out = "tex_files_withallimagesandbib/issue_percent_table.tex")
 
-# Print the result
-print(most_mentioned_issue)
+# 1. Plot: Standard deviation of environmental mentions by constituency
+# Calculate standard deviation of environment_word_pct by constituency for each party
+env_sd_by_constituency_party <- final_merged %>%
+  group_by(Party, constituency) %>%
+  summarise(
+    sd_environment_word_pct = sd(environment_word_pct, na.rm = TRUE),
+    mean_environment_word_pct = mean(environment_word_pct, na.rm = TRUE),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  arrange(Party, desc(sd_environment_word_pct))
 
-# List unique election years
-election_years <- unique(issue_mentions$Election)
-
-# Create a LaTeX table for each election year
-for (year in election_years) {
-  # Filter data for the specific election year
-  year_data <- issue_mentions %>%
-    filter(Election == year) %>%
-    pivot_longer(cols = starts_with("percent_"), names_to = "Issue", values_to = "Percentage") %>%
-    pivot_wider(names_from = Issue, values_from = Percentage) %>%
-    arrange(Party)
-  
-  # Generate LaTeX table using stargazer
-  stargazer(
-    year_data,
-    type = "latex",
-    title = paste("Percentage of Mentions by Issue for Election Year", year),
-    summary = FALSE,
-    rownames = FALSE,
-    out = paste0("tex_files_withallimagesandbib/issue_mentions_", year, ".tex")
+# Plot the standard deviation for each party (black and white, publication style)
+ggplot(env_sd_by_constituency_party, aes(x = reorder(constituency, -sd_environment_word_pct), y = sd_environment_word_pct, fill = Party)) +
+  geom_col(color = "black") +
+  facet_wrap(~ Party, scales = "free_x") +
+  scale_fill_grey(start = 0.3, end = 0.8) +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "Standard Deviation of Environmental Mentions by Constituency and Party",
+    x = "Constituency (sorted within Party)",
+    y = "SD of Environmental Mentions (%)"
+  ) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    legend.position = "none",
+    plot.title = element_text(size = 16, face = "bold"),
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    strip.text = element_text(size = 12)
   )
-}
+ggsave("tex_files_withallimagesandbib/plots/sd_env_mentions_by_constituency_party_bw.png", width = 12, height = 6, dpi = 300)
 
-# Prepare the data for stargazer
-env_percentage_table <- issue_mentions %>%
-  select(Election, Party, percent_total_environment) %>%
-  arrange(Election, Party)
+# 2. Table: Top 3 issues by party (black and white, formatted for publication)
+top3_issues_by_party <- issue_percent_table_long %>%
+  group_by(Party, Issue) %>%
+  summarise(mean_percent = mean(Percent, na.rm = TRUE), .groups = "drop") %>%
+  group_by(Party) %>%
+  slice_max(order_by = mean_percent, n = 3) %>%
+  arrange(Party, desc(mean_percent))
 
-# Output LaTeX table using stargazer
+# Output as LaTeX table for appendix
 stargazer(
-  env_percentage_table,
+  top3_issues_by_party,
   type = "latex",
-  title = "Percentage of Environment Mentions by Party and Year",
   summary = FALSE,
+  title = "Top 3 Issues by Party (Average Percentage Across Years)",
   rownames = FALSE,
-  out = "tex_files_withallimagesandbib/environment_mentions_percentage.tex"
+  digits = 2,
+  out = "tex_files_withallimagesandbib/top3_issues_by_party_bw.tex"
 )
+# Output as LaTeX table for appendix
+stargazer(issue_percent_table_wide, type = "latex", summary = FALSE,
+  title = "Full Breakdown: Percentage of Leaflet Text by Issue, Party, and Year",
+  out = "tex_files_withallimagesandbib/full_issue_breakdown_appendix.tex")
 
-# Ensure the plots directory exists
-if (!dir.exists("tex_files_withallimagesandbib/plots")) {
-  dir.create("tex_files_withallimagesandbib/plots", recursive = TRUE)
-}
-
-#graphs
-
-# Plot for percentage of environment mentions by party and year (black and white, publication style)
-ggplot(env_percentage_table, aes(x = Party, y = percent_total_environment, fill = Election)) +
-  geom_bar(stat = "identity", position = "dodge", color = "black") +
-  scale_fill_grey(start = 0.3, end = 0.8) +
-  theme_minimal(base_size = 14) +
-  labs(title = "Percentage of Environment Mentions by Party and Year",
-       x = "Party",
-       y = "Percentage") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
-        axis.text.y = element_text(size = 12),
-        legend.title = element_text(size = 14),
-        legend.text = element_text(size = 12),
-        plot.title = element_text(size = 16, face = "bold"))
-
-output_path <- "tex_files_withallimagesandbib/plots/env_mentions_percentage_bw.png"
-ggsave(output_path, width = 12, height = 8, dpi = 300)
-cat("Saved plot to:", output_path, "\n")
-
-# Plot for count of observations total each election (black and white, publication style)
-ggplot(count_by_year, aes(x = Election, y = Count, fill = Election)) +
-  geom_bar(stat = "identity", color = "black") +
-  scale_fill_grey(start = 0.3, end = 0.8) +
-  theme_minimal(base_size = 14) +
-  labs(title = "Total Count of Observations by Election",
-       x = "Election Year",
-       y = "Total Count") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
-        axis.text.y = element_text(size = 12),
-        legend.title = element_text(size = 14),
-        legend.text = element_text(size = 12),
-        plot.title = element_text(size = 16, face = "bold"))
-
-output_path <- "tex_files_withallimagesandbib/plots/total_count_by_election_bw.png"
-ggsave(output_path, width = 12, height = 8, dpi = 300)
-cat("Saved plot to:", output_path, "\n")
-
-# Plot for count of environment mentions by party and year (black and white, publication style)
-env_count_table <- issue_mentions %>% 
-  select(Election, Party, total_environment) %>% 
-  arrange(Election, Party)
-
-ggplot(env_count_table, aes(x = Party, y = total_environment, fill = Election)) +
-  geom_bar(stat = "identity", position = "dodge", color = "black") +
-  scale_fill_grey(start = 0.3, end = 0.8) +
-  theme_minimal(base_size = 14) +
-  labs(title = "Count of Environment Mentions by Party and Year",
-       x = "Party",
-       y = "Count") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
-        axis.text.y = element_text(size = 12),
-        legend.title = element_text(size = 14),
-        legend.text = element_text(size = 12),
-        plot.title = element_text(size = 16, face = "bold"))
-
-output_path <- "tex_files_withallimagesandbib/plots/env_mentions_count_bw.png"
-ggsave(output_path, width = 12, height = 8, dpi = 300)
-cat("Saved plot to:", output_path, "\n")
-
-# Plot for total mentions of any topic by party and year (black and white, publication style)
-total_mentions_table <- issue_mentions %>% 
-  select(Election, Party, total_mentions) %>% 
-  arrange(Election, Party)
-
-ggplot(total_mentions_table, aes(x = Party, y = total_mentions, fill = Election)) +
-  geom_bar(stat = "identity", position = "dodge", color = "black") +
-  scale_fill_grey(start = 0.3, end = 0.8) +
-  theme_minimal(base_size = 14) +
-  labs(title = "Total Mentions of Any Topic by Party and Year",
-       x = "Party",
-       y = "Total Mentions") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
-        axis.text.y = element_text(size = 12),
-        legend.title = element_text(size = 14),
-        legend.text = element_text(size = 12),
-        plot.title = element_text(size = 16, face = "bold"))
-
-output_path <- "tex_files_withallimagesandbib/plots/total_mentions_by_party_year_bw.png"
-ggsave(output_path, width = 12, height = 8, dpi = 300)
-cat("Saved plot to:", output_path, "\n")
-
+# Stacked Issue Composition by Party and Year (colorblind-friendly palette)
+ggplot(issue_percent_table_long, aes(x = Party, y = Percent, fill = Issue)) +
+  geom_bar(
+  stat = "identity", 
+  position = "fill", 
+  color = "black"
+  ) +
+  facet_wrap(~ Election) +
+  scale_fill_viridis_d(option = "D") +  # Use a colorblind-friendly palette
+  theme_minimal(base_size = 12) +
+  labs(title = "Issue Composition by Party and Year (100% Stacked)", x = "Party", y = "Proportion of Leaflet Text") +
+  theme(
+  axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
+  panel.grid.major.y = element_line(color = "grey80", linetype = "dashed"),
+  panel.grid.minor = element_blank(),
+  strip.background = element_rect(fill = "grey90", color = NA),
+  legend.position = "bottom",  # Move legend to the bottom for better readability
+  legend.title = element_text(size = 12),
+  legend.text = element_text(size = 10)
+  )
+ggsave("tex_files_withallimagesandbib/plots/stacked_issue_composition_colorblind_friendly.png", width = 14, height = 8, dpi = 300)
 

@@ -20,7 +20,7 @@
 setwd("C:/Users/kburg/OneDrive/Documents/GitHub/MSc_ASDS_Dissertation_Burg/CSVandSHPfiles")
 rm(list = ls())
 df <- read.csv("data_withweather.csv")
-head(df)
+#head(df)
 
 library(tidyr)
 library(dplyr)
@@ -326,10 +326,10 @@ model_data2 <- final_merged[, c(
   ]
 
 
-#create count variables
+#create percentage variable for total students
 model_data2 <- model_data2 %>%
   mutate(
-    Total_Students_Count = Full_Time_Students_Employed + Full_Time_Students_Unemployed + Full_Time_Students_Inactive
+    Total_Student_Pct = (Full_Time_Students_Employed + Full_Time_Students_Unemployed + Full_Time_Students_Inactive) / Total_Population
   )
 
 model_data2 <- unique(model_data2)
